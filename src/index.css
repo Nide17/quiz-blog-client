@@ -70,6 +70,15 @@ body,
   color: var(--brand) !important;
 }
 
+.capitalize-first {
+  text-transform: lowercase;
+  display: inline-block;
+}
+
+.capitalize-first::first-letter {
+  text-transform: uppercase;
+}
+
 .btn-outline-primary {
   color: var(--brand);
   border-color: var(--brand);

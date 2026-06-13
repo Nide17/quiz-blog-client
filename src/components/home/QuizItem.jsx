@@ -28,14 +28,14 @@ const QuizItem = ({ quiz, fromSearch }) => {
 
       {/* Category */}
       <div className="d-flex justify-content-center fw-bold text-uppercase mb-2">
-        <small className="text-muted">
+        <small className="text-muted text-xs">
           - {category?.title || 'Uncategorized'}
         </small>
       </div>
 
       {/* Description */}
       <CardText className="text-secondary text-center flex-grow-1" style={{ overflow: 'hidden' }}>
-        <span className="details">
+        <span className="details capitalize-first">
           {description || 'No description available.'}
         </span>
       </CardText>
