@@ -49,13 +49,6 @@ const AllBlogPosts = () => {
           ) : bPcats.allPostCategories &&
             bPcats.allPostCategories.length > 0 ? (
             <div className="sticky-categories">
-              <h5
-                className="fw-bolder text-uppercase text-center mb-5"
-                style={{ color: 'var(--brand)' }}
-              >
-                Discover Knowledge
-              </h5>
-
               <ListGroup className="cats-container">
                 <Link to="/blog" className="px-2">
                   <ListGroupItem
