@@ -12,8 +12,6 @@ const LandingSection = () => {
   const { toggleR } = useContext(logRegContext);
   const title = 'Knowledge matters, and so does the joy of quizzing!';
 
-  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-
   const handleGetStarted = () => {
     if (!isAuthenticated) {
       toggleR();
@@ -34,9 +32,7 @@ const LandingSection = () => {
 
       <Col sm={12} lg={7} className="d-flex flex-column text-start px-3 px-lg-5">
         <h1 className="text-primary fw-bolder mb-3 landing-title">
-          {title.split(' ').map((word) => (
-            <span key={word} className="d-inline-block me-1">{capitalize(word)}&nbsp;</span>
-          ))}
+          <span className="d-inline-block me-1">{title}</span>
         </h1>
 
         <p className="lead fs-5 pt-3">
