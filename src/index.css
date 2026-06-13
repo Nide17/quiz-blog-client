@@ -703,42 +703,6 @@ nav .dropdown-item-text a button {
   background-color: #ffffff !important;
 }
 
-/* CatDropdown specific styles */
-.cat-dropdown-toggle {
-  padding: 0;
-  color: #fff;
-  /* keep toggle text white over brand header */
-  font-weight: 700;
-}
-
-.cat-dropdown-menu {
-  background-color: #fff !important;
-  width: max-content !important;
-  border: 2px solid var(--brand) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  min-width: 12rem !important;
-}
-
-.cat-dropdown-menu .cat-dropdown-link {
-  color: var(--brand);
-  font-weight: 700;
-}
-
-.cat-dropdown-menu .cat-dropdown-link:hover {
-  color: var(--accent);
-}
-
-/* decorative accent at top of categories menu */
-.cat-dropdown-menu::before {
-  content: "";
-  display: block;
-  height: 6px;
-  width: 100%;
-  background: linear-gradient(90deg, var(--brand) 0%, var(--accent) 100%);
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-}
-
 /* close button uses brand/accent outline */
 .cat-close-btn {
   background: linear-gradient(180deg, var(--accent), var(--brand));
@@ -750,18 +714,6 @@ nav .dropdown-item-text a button {
 
 .cat-close-btn:hover {
   filter: brightness(0.95);
-}
-
-/* small decorative left border on items to hint brand color */
-.cat-dropdown-menu .dropdown-item {
-  border-left: 4px solid transparent;
-}
-
-.cat-dropdown-menu .dropdown-item:hover {
-  border-left-color: var(--brand);
-  background: linear-gradient(90deg,
-      rgba(21, 122, 110, 0.03) 0%,
-      rgba(255, 193, 7, 0.02) 100%);
 }
 
 /* EditPictureModal styles */
