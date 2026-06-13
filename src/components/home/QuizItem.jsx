@@ -34,11 +34,10 @@ const QuizItem = ({ quiz, fromSearch }) => {
       </div>
 
       {/* Description */}
-      <CardText
-        className="text-secondary details text-center flex-grow-1"
-        style={{ minHeight: '3rem' }}
-      >
-        {description || 'No description available.'}
+      <CardText className="text-secondary text-center flex-grow-1" style={{ overflow: 'hidden' }}>
+        <span className="details">
+          {description || 'No description available.'}
+        </span>
       </CardText>
 
       {/* Date */}
