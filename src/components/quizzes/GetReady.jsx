@@ -166,7 +166,7 @@ const GetReady = () => {
                             😕 {texts.noQuestions}
                         </CardTitle>
                         <CardText className="text-secondary mb-4">
-                            This quiz is still being prepared. Don&apos;t worry — plenty of other quizzes
+                            This quiz is still being prepared. Don&apos;t worry, plenty of other quizzes
                             are ready for you to try!
                         </CardText>
                         <Link to="/all-quizzes">

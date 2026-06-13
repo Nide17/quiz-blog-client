@@ -217,8 +217,6 @@ const usersSlice = createSlice({
 
       // CASE 2: Backend sent a *refreshed* token
       if (backendToken !== storedToken) {
-        console.log("Token was refreshed by backend — updating localStorage");
-
         localStorage.setItem("token", backendToken);
         state.token = backendToken;
       }

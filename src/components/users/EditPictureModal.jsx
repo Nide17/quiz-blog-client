@@ -99,7 +99,7 @@ const EditPictureModal = () => {
             <FormGroup>
               <Label for="profilePicture" className="my-2">
                 <strong>Upload picture</strong>&nbsp;
-                <small className="text-muted">(.jpg, .jpeg, .png, .svg) — max 2MB</small>
+                <small className="text-muted">(.jpg, .jpeg, .png, .svg): max 2MB</small>
               </Label>
 
               {/* Preview */}

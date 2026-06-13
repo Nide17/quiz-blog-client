@@ -70,7 +70,7 @@ const DatabaseMetricsTab = () => {
                 <Col md="6" className="text-md-end mt-3 mt-md-0">
                     <small className="text-muted me-3">
                         <i className="fas fa-clock me-1" /> Last updated:{" "}
-                        {lastUpdated ?? "—"}
+                        {lastUpdated ?? "-"}
                     </small>
 
                     <Button

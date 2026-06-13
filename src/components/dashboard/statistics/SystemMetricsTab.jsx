@@ -104,7 +104,7 @@ const SystemMetricsTab = () => {
         fetchSystemMetrics(); // initial load
         const interval = setInterval(fetchSystemMetrics, 60000);
         return () => clearInterval(interval);
-    }, [isAuthenticated, user]); // dispatch and getSystemMetrics are stable (assumed)
+    }, [isAuthenticated, user]);
 
 
     return (
@@ -119,7 +119,7 @@ const SystemMetricsTab = () => {
 
                         <div className="text-muted d-flex align-items-center">
                             <small className="me-2">
-                                Last updated: {lastUpdated ?? "—"}
+                                Last updated: {lastUpdated ?? "N/A"}
                             </small>
 
                             <Button

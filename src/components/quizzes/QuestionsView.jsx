@@ -78,7 +78,6 @@ const QuestionsView = ({
 
     return (
         <div className="question-view p-2" style={{ backgroundColor: "#F5F5F5" }}>
-            {/* Countdown — only start when image is loaded successfully */}
             <CountDown
                 timeInSecs={currentQn.duration}
                 start={shouldStartCountdown}
