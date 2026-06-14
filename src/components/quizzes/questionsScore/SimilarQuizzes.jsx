@@ -8,7 +8,6 @@ import { calculateQuestionsDurationInMinutes } from "@/utils/quizUtils";
 
 // Constants
 const MAX_SIMILAR_QUIZZES = 3;
-const BRAND_COLOR = '#157a6e';
 
 // Helper Functions
 const getDifficultyColor = (difficulty) => {
@@ -25,21 +24,11 @@ const shuffleArray = (array) => {
 // Section Header Component
 const SectionHeader = ({ categoryTitle }) => (
   <div className="text-center mb-4 mb-md-5 px-2">
-    <h4 className="fw-bold mb-2 mb-sm-3 fs-5 fs-md-4" style={{ color: BRAND_COLOR }}>
+    <h4 className="fw-bold mb-2 mb-sm-3 fs-5 fs-md-4" style={{ color: 'var(--brand)' }}>
       <i className="fa fa-lightbulb me-2"></i>
       <span className="d-none d-sm-inline">You Might Also Like</span>
       <span className="d-inline d-sm-none">More Quizzes</span>
     </h4>
-    <p className="text-muted mb-0 fs-6 fs-sm-5">
-      <span className="d-none d-sm-inline">Similar quizzes from </span>
-      <Badge
-        color="success"
-        className="px-2 px-sm-3 py-1"
-        style={{ backgroundColor: BRAND_COLOR }}
-      >
-        {categoryTitle || 'this category'}
-      </Badge>
-    </p>
     <hr className="my-3 my-sm-4 mx-auto" style={{ maxWidth: '200px', opacity: '0.3' }} />
   </div>
 );
@@ -48,7 +37,7 @@ const SectionHeader = ({ categoryTitle }) => (
 const QuizStats = ({ questionCount, estimatedMinutes, difficulty }) => (
   <div className="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
     <div className="text-center flex-fill">
-      <div className="fw-bold fs-6 fs-sm-5" style={{ color: BRAND_COLOR }}>
+      <div className="fw-bold fs-6 fs-sm-5" style={{ color: 'var(--brand)' }}>
         {questionCount}
       </div>
       <small className="text-muted" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
@@ -58,7 +47,7 @@ const QuizStats = ({ questionCount, estimatedMinutes, difficulty }) => (
     </div>
 
     <div className="text-center flex-fill border-start border-end px-2">
-      <div className="fw-bold fs-6 fs-sm-5" style={{ color: BRAND_COLOR }}>
+      <div className="fw-bold fs-6 fs-sm-5" style={{ color: 'var(--brand)' }}>
         ~{estimatedMinutes}m
       </div>
       <small className="text-muted" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
@@ -118,7 +107,7 @@ const QuizCard = ({ quiz, index }) => {
               className="px-2 py-1"
               style={{
                 backgroundColor: '#f3f3f2',
-                color: BRAND_COLOR,
+                color: 'var(--brand)',
                 fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)'
               }}
             >
@@ -130,7 +119,7 @@ const QuizCard = ({ quiz, index }) => {
           <h5
             className="fw-bold mb-2 fs-6 fs-sm-5"
             style={{
-              color: BRAND_COLOR,
+              color: 'var(--brand)',
               lineHeight: '1.4',
             }}
           >
@@ -166,7 +155,7 @@ const QuizCard = ({ quiz, index }) => {
               style={{
                 backgroundColor: '#ffc107',
                 border: 'none',
-                color: BRAND_COLOR,
+                color: 'var(--brand)',
                 transition: 'all 0.2s ease-in-out',
                 fontSize: 'clamp(0.875rem, 2vw, 1rem)',
               }}
@@ -182,7 +171,6 @@ const QuizCard = ({ quiz, index }) => {
   );
 };
 
-// Browse All Button Component
 const BrowseAllButton = () => (
   <div className="text-center mt-4 mt-sm-5 px-2">
     <Link to="/all-quizzes" className="text-decoration-none">
@@ -192,15 +180,14 @@ const BrowseAllButton = () => (
         size="lg"
         className="px-4 px-sm-5 py-2 py-sm-3 fw-bold"
         style={{
-          borderColor: BRAND_COLOR,
-          color: BRAND_COLOR,
+          borderColor: 'var(--brand)',
           transition: 'all 0.2s ease-in-out',
           fontSize: 'clamp(0.875rem, 2vw, 1rem)',
         }}
       >
         <i className="fa fa-grid me-2"></i>
-        <span className="d-none d-sm-inline">Browse All Quizzes</span>
-        <span className="d-inline d-sm-none">All Quizzes</span>
+        <span className="d-none d-sm-inline">Browse all quizzes</span>
+        <span className="d-inline d-sm-none">All quizzes</span>
       </Button>
     </Link>
   </div>
@@ -296,7 +283,6 @@ const SimilarQuizzes = ({ thisQuiz }) => {
         ))}
       </Row>
 
-      {/* Browse All Link */}
       <BrowseAllButton />
     </div>
   );
