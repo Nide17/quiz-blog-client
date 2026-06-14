@@ -60,7 +60,7 @@ const LandingSection = () => {
         </div>
       </Col>
 
-      <Col sm={12} lg={5} className="py-3 p-md-5">
+      <Col sm={12} lg={5} className="p-2 p-md-5">
         <Adverts />
       </Col>
 
