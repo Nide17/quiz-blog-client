@@ -1,5 +1,6 @@
 import { Row, Col } from 'reactstrap';
 import reading from '@/images/reading.svg';
+import Jumbotron from '@/utils/Jumbotron';
 
 const Intro = () => {
     return (
@@ -28,17 +29,11 @@ const Intro = () => {
 
             {/* Journey Section */}
             <Row className="px-3 px-lg-5 mt-5">
-                <div className="jbtron rounded px-3 px-sm-4 py-4 my-3 my-lg-5 shadow-sm bg-white">
-                    <h2 className="fw-bolder text-center mb-4" style={{ color: 'var(--accent)' }}>
-                        Our Journey
-                    </h2>
-
-                    <p className="text-center mb-3">
-                        Bruce started university in 2019 and struggled to find enough materials for self-study. To solve this, he worked with his brother, a software developer, to create Quiz-Blog, a platform that provides Multiple Choice Questions (MCQs) for students. What began with health sciences has grown to cover many subjects, helping students in Rwanda and around the world improve their learning.
-                    </p>
-
-                    <hr className="my-3" style={{ height: '2px', backgroundColor: 'var(--brand)', border: 'none' }} />
-                </div>
+                <Jumbotron
+                    h1="Our Journey"
+                    p="Bruce started university in 2019 and struggled to find enough materials for self-study. To solve this, he worked with his brother, a software developer, to create Quiz-Blog, a platform that provides Multiple Choice Questions (MCQs) for students. What began with health sciences has grown to cover many subjects, helping students in Rwanda and around the world improve their learning."
+                    small=""
+                />
             </Row>
 
         </div>

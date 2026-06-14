@@ -2,6 +2,7 @@ import { useState, useEffect, lazy } from 'react';
 import { Button, Col, Row, Form, FormGroup, Input } from 'reactstrap';
 import SquareAd from '@/components/adsenses/SquareAd';
 import isAdEnabled from '@/utils/isAdEnabled';
+import Jumbotron from "@/utils/Jumbotron";
 import { sendRoomMessage } from '@/redux/slices/contactsSlice';
 import { useDispatch } from 'react-redux';
 import './contact.css';
@@ -85,16 +86,10 @@ const Contact = () => {
 
     return (
         <div className='contact-section py-0 px-3 py-5 d-flex flex-column align-items-center'>
-            <div className="jbtron rounded w-lg-75 px-3 px-sm-4 py-3 py-sm-5 p-2 m-2 m-sm-0 text-center border border-info ">
-
-                <h1 className="display-4 fw-bolder text-center my-4 mb-lg-4" style={{ color: 'var(--accent)' }}>
-                    Reach Out Quiz-Blog
-                </h1>
-
-                <p className="lead mb-1 mb-lg-4 text-white">
-                    Quiz-Blog was created with the intention of offering a diverse range of quizzes and study materials aimed at enhancing students&apos; critical thinking abilities and exam preparedness. Our blog articles span various subjects, serving to deepen students&apos; understanding of their lessons.
-                </p>
-            </div>
+            <Jumbotron
+                h1="Reach Out Quiz-Blog"
+                p="Quiz-Blog was created with the intention of offering a diverse range of quizzes and study materials aimed at enhancing students&apos; critical thinking abilities and exam preparedness. Our blog articles span various subjects, serving to deepen students&apos; understanding of their lessons."
+            />
 
             {isAdEnabled() && <div className='w-100'>
                 {/* Google responsive 1 ad */}

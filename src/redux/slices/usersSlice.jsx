@@ -321,7 +321,6 @@ const usersSlice = createSlice({
     });
     builder.addCase(sendNewPassword.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.user = action.payload;
       notify('Password reset successful! Please login with your new password.');
     });
     builder.addCase(deleteUser.fulfilled, (state, action) => {

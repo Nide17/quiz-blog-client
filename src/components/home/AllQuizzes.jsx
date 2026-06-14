@@ -8,6 +8,7 @@ import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 import ResponsiveAd from '@/components/adsenses/ResponsiveAd';
 import isAdEnabled from '@/utils/isAdEnabled';
 import SquareAd from '@/components/adsenses/SquareAd';
+import Jumbotron from '@/utils/Jumbotron';
 
 const QuizItem = lazy(() => import('./QuizItem'));
 
@@ -18,22 +19,11 @@ const MIN_QUESTIONS = 5;
 // Hero Section Component
 const HeroSection = () => (
     <div className="d-flex justify-content-center px-3 px-md-4 mb-4">
-        <div
-            className="jbtron rounded px-3 px-sm-4 py-4 py-sm-5 text-center border border-info shadow-sm"
-            style={{
-                maxWidth: '1080px',
-                width: '100%',
-                background: 'linear-gradient(120deg, rgba(21,122,110,0.98) 0%, rgba(31,127,110,0.95) 100%)',
-                color: '#fff'
-            }}
-        >
-            <h1 className="display-5 fw-bolder mb-3 text-white">
-                Quiz library
-            </h1>
-            <p className="lead mb-0 text-white-75">
-                Ready for a quick challenge? Browse concise quizzes across topics.
-            </p>
-        </div>
+        <Jumbotron
+            h1="Quiz library"
+            p="Ready for a quick challenge?"
+            small="Explore a wide range of quizzes to test your knowledge."
+        />
     </div>
 );
 

@@ -7,6 +7,7 @@ import ResponsiveAd from '@/components/adsenses/ResponsiveAd';
 import isAdEnabled from '@/utils/isAdEnabled';
 import SquareAd from '@/components/adsenses/SquareAd';
 import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
+import Jumbotron from "@/utils/Jumbotron";
 import './allBlogPosts.css';
 
 const BlogPostItem = lazy(() => import('./BlogPostItem'));
@@ -29,17 +30,10 @@ const AllBlogPosts = () => {
     <div className="posts blog-posts mt-4 py-lg-5">
       <Row>
         <Col xs="12" className="mb-3">
-          <div className="blog-hero jbtron rounded p-3 text-center">
-            <h1
-              className="display-4 fw-bolder text-center my-4 mb-lg-4"
-              style={{ color: 'var(--accent)' }}
-            >
-              Quiz-Blog Articles
-            </h1>
-            <p className="lead mb-1 mb-lg-4 text-white">
-              Insights, guides and stories to help you learn and prepare.
-            </p>
-          </div>
+          <Jumbotron
+            h1="Quiz-Blog Articles"
+            p="Insights, guides and stories to help you learn and prepare."
+          />
         </Col>
       </Row>
       <Row className="mt-lg-5 d-flex justify-content-around">
