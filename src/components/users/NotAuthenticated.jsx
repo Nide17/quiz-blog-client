@@ -7,7 +7,7 @@ import QBLoadingSM from "@/utils/rLoading/QBLoadingSM";
 import "./NotAuthenticated.css";
 
 export default function NotAuthenticated({
-    message = "You must be logged in to continue",
+    message = "Log in first to continue",
     actionLabel = "Login",
     onAction,
 }) {
@@ -33,9 +33,9 @@ export default function NotAuthenticated({
                 role="alert"
                 aria-live="assertive"
             >
-                <h1 className="h5 fw-bold text-success mb-3">
+                <small className="text-success mb-4 d-block">
                     {message}
-                </h1>
+                </small>
 
                 <Button
                     color="warning"
@@ -43,6 +43,7 @@ export default function NotAuthenticated({
                     className="fw-bold px-4 py-2 text-success"
                     disabled={!handleAction}
                 >
+                    <i className="fa fa-lock me-2 text-sm"></i>
                     {actionLabel}
                 </Button>
 

@@ -154,7 +154,7 @@ const Index = () => {
     dispatch(getCourseCategories());
   }, [dispatch]);
 
-  if (!isAuthenticated) return <NotAuthenticated message='Login first' />;
+  if (!isAuthenticated) return <NotAuthenticated />;
 
   return isLoading ? <QBLoadingSM /> : (
     <div className="course-notes px-3">
