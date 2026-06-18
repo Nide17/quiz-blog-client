@@ -115,7 +115,7 @@ const PaginationControls = ({ skip, limit, itemCount, onPrevious, onNext }) => (
 const QuizList = ({ quizzes, isLoading }) => {
     if (isLoading) {
         return (
-            <Card className="border-0 shadow-sm mt-4">
+            <Card className="border-0 shadow-sm my-4">
                 <CardBody className="py-5 d-flex justify-content-center align-items-center">
                     <QBLoadingSM />
                 </CardBody>

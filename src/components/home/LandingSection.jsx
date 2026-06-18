@@ -30,7 +30,7 @@ const LandingSection = () => {
   return (
     <section className="intro-landing w-100 d-flex flex-column flex-lg-row justify-content-around align-items-center mx-auto py-5" aria-label="Landing">
 
-      <Col sm={12} lg={7} className="d-flex flex-column text-start px-3 px-lg-5">
+      <Col sm={12} lg={7} className="d-flex flex-column text-start p-2 p-md-5">
         <h1 className="text-primary fw-bolder mb-3 landing-title">
           <span className="d-inline-block me-1">{title}</span>
         </h1>

@@ -1545,9 +1545,9 @@ p.advert-caption:hover {
     border-radius: 0.85rem;
   }
 
-  p.advert-caption {
+ .intro-landing p.advert-caption {
     padding: 0.8rem 0.9rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem !important;
     border-radius: 0.75rem;
   }
 }
@@ -1563,7 +1563,7 @@ p.advert-caption:hover {
 
   .intro-landing p.advert-caption {
     padding: 0.7rem 0.8rem;
-    font-size: 0.85rem !important;
+    font-size: 0.7rem !important;
     border-radius: 0.65rem;
     margin-top: 0.5rem;
   }

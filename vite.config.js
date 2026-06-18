@@ -33,50 +33,27 @@ export default defineConfig(() => {
                         }
                         return `assets/[name]-[hash][extname]`;
                     },
-                    manualChunks: {
-                        // React core
-                        'react-vendor': ['react', 'react-dom'],
-                        
-                        // Redux and state management
-                        'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
-                        
-                        // Routing
-                        'router-vendor': ['react-router-dom'],
-                        
-                        // UI libraries
-                        'ui-vendor': [
-                            'bootstrap', 
-                            'reactstrap', 
-                            'react-tabs',
-                            'react-collapse',
-                            'react-toastify'
-                        ],
-                        
-                        // Charts and visualization
-                        'charts-vendor': ['react-google-charts'],
-                        
-                        // PDF and documents (will be lazy loaded)
-                        'pdf-vendor': ['@react-pdf/renderer'],
-                        
-                        // Utilities
-                        'utils-vendor': [
-                            'axios',
-                            'uuid',
-                            'socket.io-client'
-                        ],
-                        
-                        // Content and markdown
-                        'content-vendor': [
-                            'react-markdown',
-                            'rehype-highlight',
-                        ],
-                        
-                        // Analytics and ads
-                        'analytics-vendor': [
-                            'react-ga4',
-                            'react-adsense',
-                            'web-vitals'
-                        ]
+                    manualChunks(id) {
+                        if (!id.includes('node_modules')) return;
+
+                        // Map packages to their respective chunks
+                        const chunks = {
+                            'react-vendor': ['react', 'react-dom'],
+                            'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
+                            'router-vendor': ['react-router-dom'],
+                            'ui-vendor': ['bootstrap', 'reactstrap', 'react-tabs', 'react-collapse', 'react-toastify'],
+                            'charts-vendor': ['react-google-charts'],
+                            'pdf-vendor': ['@react-pdf/renderer'],
+                            'utils-vendor': ['axios', 'uuid', 'socket.io-client'],
+                            'content-vendor': ['react-markdown', 'rehype-highlight'],
+                            'analytics-vendor': ['react-ga4', 'react-adsense', 'web-vitals']
+                        };
+
+                        for (const [chunkName, packages] of Object.entries(chunks)) {
+                            if (packages.some(pkg => id.includes(`node_modules/${pkg}/`))) {
+                                return chunkName;
+                            }
+                        }
                     }
                 }
             }

@@ -67,7 +67,7 @@ const FaqCollapse = () => {
         </p>
 
         <small className="fw-bolder text-white">
-          Have more questions? Reach us at{' '}
+          Have more questions? Reach out at{' '}
           <a
             href="mailto:quizblog.rw@gmail.com?subject=Contact%20Quiz%20Blog"
             style={{ color: 'var(--accent)' }}
