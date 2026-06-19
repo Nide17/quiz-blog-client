@@ -48,7 +48,7 @@ const MessageBubble = memo(({ message, isMe, formattedDate, isArchive }) => {
     // IF CONTACT REPLIES, PARSE THEM
     const messageText = useMemo(
         () => isArchive ? parseMessage(message) : message,
-        [message]
+        [message, isArchive]
     );
 
     return (

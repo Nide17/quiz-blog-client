@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy } from 'react';
 import { get50NewUsers, getAllUsers, getUsersWithImage, getUsersWithSchool, getUsersWithLevel, getUsersWithFaculty, getUsersWithInterests, getUsersWithAbout, getTop10QuizzingUsers, getTop10Downloaders, getTop10Quizzes, getTop10Notes } from '@/redux/slices/statisticsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import TableData from '../TableData';
+const TableData = lazy(() => import('../TableData'));
 import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 import { useLocation } from 'react-router-dom';
 

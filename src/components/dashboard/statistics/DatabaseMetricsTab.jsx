@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     Row,
@@ -28,12 +28,12 @@ const DatabaseMetricsTab = () => {
     const { user, isAuthenticated } = useSelector((state) => state.users);
     const [lastUpdated, setLastUpdated] = useState(null);
 
-    const fetchMetrics = () => {
+    const fetchMetrics = useCallback(() => {
         if (isAuthenticated && user?.role?.includes("Admin")) {
             dispatch(getDataMetrics());
             setLastUpdated(new Date().toLocaleTimeString());
         }
-    };
+    }, [isAuthenticated, user, dispatch]);
 
     useEffect(() => {
         if (!isAuthenticated || !user?.role?.includes("Admin")) return;
@@ -42,7 +42,7 @@ const DatabaseMetricsTab = () => {
 
         const interval = setInterval(fetchMetrics, 60000);
         return () => clearInterval(interval);
-    }, [isAuthenticated, user]);
+    }, [isAuthenticated, user, dispatch, fetchMetrics]);
 
     const databases = dataMetrics ? Object.values(dataMetrics.databases || {}) : [];
     const redis = dataMetrics?.redis;

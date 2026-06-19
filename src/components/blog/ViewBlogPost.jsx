@@ -109,7 +109,7 @@ const useRevealOnScroll = (elementRef, dependency) => {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [dependency]);
+  }, [dependency, elementRef]);
 };
 
 const ContentRenderer = memo(({ content, type }) => {

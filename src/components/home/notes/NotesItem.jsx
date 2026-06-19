@@ -4,7 +4,7 @@ import { formatDateTime } from '@/utils/dateFormat';
 
 const NotesItem = ({ note, fromSearch }) => {
 
-  const { slug, title, description, courseCategory, course, chapter, createdAt, } = note;
+  const { slug, title, description, course, chapter, createdAt, } = note;
   const formattedDate = createdAt ? formatDateTime(createdAt) : '';
 
   return (

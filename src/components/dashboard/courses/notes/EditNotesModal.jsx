@@ -200,11 +200,6 @@ const EditNotesModal = ({
   editDesc,
   currentFileName = null
 }) => {
-  // Validate required props
-  if (!idToUpdate) {
-    console.error('EditNotesModal: idToUpdate is required');
-    return null;
-  }
 
   // Initial form data
   const initialUpdateData = useMemo(
@@ -283,6 +278,12 @@ const EditNotesModal = ({
     },
     [idToUpdate, buildFormData]
   );
+
+  // Validate required props
+  if (!idToUpdate) {
+    console.error('EditNotesModal: idToUpdate is required');
+    return null;
+  }
 
   return (
     <UpdateModal

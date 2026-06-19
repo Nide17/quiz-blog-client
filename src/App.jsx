@@ -7,54 +7,62 @@ import 'react-toastify/dist/ReactToastify.css';
 import { logRegContext } from '@/contexts/appContexts';
 import { getCategories, getCourseCategories, getLandingDisplayNotes, loadUser } from '@/redux/slices';
 import { useSelector, useDispatch } from 'react-redux';
-
-import ForgotPassword from '@/components/users/ForgotPassword';
-import ResetPassword from '@/components/users/ResetPassword';
-import Unsubscribe from '@/components/users/Unsubscribe';
-import EditProfile from '@/components/users/EditProfile';
-import Subscribers from '@/components/dashboard/users/Subscribers';
-import Contact from '@/components/contacts/Contact';
-import ContactsArchive from '@/components/dashboard/contacts/archived/ContactsArchive';
-import ChatWrapper from '@/components/dashboard/contacts/chat/ChatWrapper';
-import FaqCollapse from '@/components/faqs/FaqCollapse';
-import About from '@/components/about/About';
-import Privacy from '@/components/misc/Privacy';
-import ItsindirePrivacy from '@/components/misc/ItsindirePrivacy';
-import Disclaimer from '@/components/misc/Disclaimer';
-import NotFound404 from '@/components/misc/NotFound404';
 import QBLoading from '@/utils/rLoading/QBLoadingSM';
-import SingleCategory from '@/components/home/categories/SingleCategory';
-import AllCategories from '@/components/home/categories/AllCategories';
-import QuizQuestions from '@/components/quizzes/QuizQuestions';
-import QuizResults from '@/components/quizzes/questionsScore/QuizResults';
-import GetReady from '@/components/quizzes/GetReady';
-import ReviewQuiz from '@/components/quizzes/review/ReviewQuiz';
-import QuizRanking from '@/components/quizzes/QuizRanking';
-import CreateQuestions from '@/components/dashboard/quizzing/questions/CreateQuestions';
-import SingleQuestion from '@/components/dashboard/quizzing/questions/SingleQuestion';
-import EditQuestion from '@/components/dashboard/quizzing/questions/EditQuestion';
-import Broadcasts from '@/components/dashboard/contacts/broadcasts/Broadcasts';
-import Dashboard from '@/components/dashboard/Dashboard';
-import Index from '@/components/dashboard/courses/Index';
-import ViewCourse from '@/components/notes/ViewCourse';
-import Feedbacks from '@/components/dashboard/scores/Feedbacks';
-import AllBlogPosts from '@/components/blog/AllBlogPosts';
-import AddBlogPost from '@/components/dashboard/posts/blog/AddBlogPost';
-import EditBlogPost from '@/components/dashboard/posts/blog/EditBlogPost';
-import ViewBlogPost from '@/components/blog/ViewBlogPost';
-import ByCategory from '@/components/blog/ByCategory';
-import UsersStats from '@/components/dashboard/statistics/content/users/UsersStats';
-import BlogStats from '@/components/dashboard/statistics/content/blogposts/BlogStats';
-import Verify from '@/components/users/Verify';
 
+// Layout (small, always needed)
 const Header = lazy(() => import('@/components/header/Header'));
 const LoginModal = lazy(() => import('@/components/users/LoginModal'));
 const RegisterModal = lazy(() => import('@/components/users/RegisterModal'));
 const Footer = lazy(() => import('@/components/footer/Footer'));
-const Statistics = lazy(() => import('@/components/dashboard/statistics/Statistics'));
+
+// Routes: ALL lazy
 const LandingQuizzes = lazy(() => import('@/components/home/LandingQuizzes'));
 const AllQuizzes = lazy(() => import('@/components/home/AllQuizzes'));
+const SingleCategory = lazy(() => import('@/components/home/categories/SingleCategory'));
+const AllCategories = lazy(() => import('@/components/home/categories/AllCategories'));
 const ViewNotePaper = lazy(() => import('@/components/home/notes/ViewNotePaper'));
+
+const GetReady = lazy(() => import('@/components/quizzes/GetReady'));
+const QuizQuestions = lazy(() => import('@/components/quizzes/QuizQuestions'));
+const QuizResults = lazy(() => import('@/components/quizzes/questionsScore/QuizResults'));
+const ReviewQuiz = lazy(() => import('@/components/quizzes/review/ReviewQuiz'));
+const QuizRanking = lazy(() => import('@/components/quizzes/QuizRanking'));
+
+const Dashboard = lazy(() => import('@/components/dashboard/Dashboard'));
+const Statistics = lazy(() => import('@/components/dashboard/statistics/Statistics'));
+const UsersStats = lazy(() => import('@/components/dashboard/statistics/content/users/UsersStats'));
+const BlogStats = lazy(() => import('@/components/dashboard/statistics/content/blogposts/BlogStats'));
+const CreateQuestions = lazy(() => import('@/components/dashboard/quizzing/questions/CreateQuestions'));
+const SingleQuestion = lazy(() => import('@/components/dashboard/quizzing/questions/SingleQuestion'));
+const EditQuestion = lazy(() => import('@/components/dashboard/quizzing/questions/EditQuestion'));
+const Subscribers = lazy(() => import('@/components/dashboard/users/Subscribers'));
+const ContactsArchive = lazy(() => import('@/components/dashboard/contacts/archived/ContactsArchive'));
+const ChatWrapper = lazy(() => import('@/components/dashboard/contacts/chat/ChatWrapper'));
+const Broadcasts = lazy(() => import('@/components/dashboard/contacts/broadcasts/Broadcasts'));
+const Feedbacks = lazy(() => import('@/components/dashboard/scores/Feedbacks'));
+const AddBlogPost = lazy(() => import('@/components/dashboard/posts/blog/AddBlogPost'));
+const EditBlogPost = lazy(() => import('@/components/dashboard/posts/blog/EditBlogPost'));
+const Index = lazy(() => import('@/components/dashboard/courses/Index'));
+
+const AllBlogPosts = lazy(() => import('@/components/blog/AllBlogPosts'));
+const ViewBlogPost = lazy(() => import('@/components/blog/ViewBlogPost'));
+const ByCategory = lazy(() => import('@/components/blog/ByCategory'));
+
+const ViewCourse = lazy(() => import('@/components/notes/ViewCourse'));
+
+const ForgotPassword = lazy(() => import('@/components/users/ForgotPassword'));
+const ResetPassword = lazy(() => import('@/components/users/ResetPassword'));
+const Unsubscribe = lazy(() => import('@/components/users/Unsubscribe'));
+const EditProfile = lazy(() => import('@/components/users/EditProfile'));
+const Verify = lazy(() => import('@/components/users/Verify'));
+
+const Contact = lazy(() => import('@/components/contacts/Contact'));
+const FaqCollapse = lazy(() => import('@/components/faqs/FaqCollapse'));
+const About = lazy(() => import('@/components/about/About'));
+const Privacy = lazy(() => import('@/components/misc/Privacy'));
+const ItsindirePrivacy = lazy(() => import('@/components/misc/ItsindirePrivacy'));
+const Disclaimer = lazy(() => import('@/components/misc/Disclaimer'));
+const NotFound404 = lazy(() => import('@/components/misc/NotFound404'));
 
 ReactGA.initialize('G-GXLLDMB41B', {
     debug: true,
@@ -62,7 +70,6 @@ ReactGA.initialize('G-GXLLDMB41B', {
 });
 
 const App = () => {
-
     const location = useLocation();
     const dispatch = useDispatch();
     const [isOpenL, setIsOpenL] = useState(false);
@@ -72,18 +79,18 @@ const App = () => {
 
     const toggleL = useCallback(() => {
         setIsOpenR(false);
-        setIsOpenL(prevIsOpenL => !prevIsOpenL);
+        setIsOpenL(prev => !prev);
     }, []);
 
     const toggleR = useCallback(() => {
         setIsOpenL(false);
-        setIsOpenR(prevIsOpenR => !prevIsOpenR);
+        setIsOpenR(prev => !prev);
     }, []);
 
     const toggle = () => setModal(!modal);
 
     useEffect(() => {
-        ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search, title: `${location.pathname + location.search}` });
+        ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search, title: location.pathname + location.search });
     }, [location]);
 
     useEffect(() => {
@@ -92,26 +99,22 @@ const App = () => {
         dispatch(getCategories());
         dispatch(getCourseCategories());
         dispatch(getLandingDisplayNotes());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         const interval = setInterval(() => {
             const token = localStorage.getItem('token');
             if (token) dispatch(loadUser());
-        }, 3600000); // every 60 minutes
-
+        }, 3600000);
         return () => clearInterval(interval);
-    }, []);
-
+    }, [dispatch]);
 
     const { user } = useSelector(state => state.users);
 
     useEffect(() => {
-
         if (user) {
             const NonEmptyFields = Object.keys(user).filter(key => user[key]).length;
             const percent = (NonEmptyFields - 2) * 10;
-
             if (percent > 0 && percent < 100) {
                 setPercentage(percent);
                 setModal(true);
@@ -122,13 +125,12 @@ const App = () => {
     return (
         <logRegContext.Provider value={{ isOpenL, toggleL, isOpenR, toggleR }}>
             <Suspense fallback={<QBLoading />}>
-                <Toast isOpen={modal} className={'w-100 popup-toast'} fade={false}>
+                <Toast isOpen={modal} className="w-100 popup-toast" fade={false}>
                     <div className="bg-warning py-2 px-3 d-flex justify-content-between align-items-center">
-                        <p className='text-danger text-center fw-bolder d-block mb-0'>
-                            &nbsp;&nbsp;Your profile is {`${percentage}`} % up to date!
-                            &nbsp;&nbsp;
+                        <p className="text-danger text-center fw-bolder d-block mb-0">
+                            &nbsp;&nbsp;Your profile is {`${percentage}`}% up to date!&nbsp;&nbsp;
                             <Link to={`/edit-profile/${user?._id}`}>
-                                <strong className='px-1' style={{ color: 'var(--brand)', textDecoration: 'underline' }}>
+                                <strong className="px-1" style={{ color: 'var(--brand)', textDecoration: 'underline' }}>
                                     Updating your picture + details...
                                 </strong>
                             </Link>
@@ -138,12 +140,13 @@ const App = () => {
                         </button>
                     </div>
                 </Toast>
+
                 <Header />
-                {/* Modals will be opened from anywhere in children since they are global */}
                 <LoginModal />
                 <RegisterModal />
+
                 <Container className="main">
-                    <Routes fallback={<QBLoading />}>
+                    <Routes>
                         <Route path="/about" element={<About />} />
                         <Route path="/privacy" element={<Privacy />} />
                         <Route path="/itsindire-privacy" element={<ItsindirePrivacy />} />
@@ -152,59 +155,63 @@ const App = () => {
                         <Route path="/forgot-password" element={<ForgotPassword />} />
                         <Route path="/reset-password" element={<ResetPassword />} />
                         <Route path="/verify" element={<Verify />} />
-                        <Route exact path="/category/:categoryId" element={<SingleCategory />} />
-                        <Route exact path="/edit-profile/:userId" element={<EditProfile />} />
-                        <Route exact path="/view-quiz/:quizSlug" element={<GetReady />} />
-                        <Route exact path="/attempt-quiz/:quizSlug" element={<QuizQuestions />} />
-                        <Route exact path="/quiz-results/:quizSlug" element={<QuizResults />} />
-                        <Route exact path="/view-question/:questionID" element={<SingleQuestion />} />
-                        <Route exact path="/edit-question/:questionID" element={<EditQuestion />} />
-                        <Route exact path="/review-quiz/:reviewId" element={<ReviewQuiz />} />
-                        <Route exact path="/quiz-ranking/:quizID" element={<QuizRanking />} />
-                        <Route exact path="/questions-create/:quizSlug" element={<CreateQuestions />} />
-                        <Route exact path="/contact" element={<Contact />} />
-                        <Route exact path="/contacts-archive" element={<ContactsArchive />} />
-                        <Route exact path="/chat" element={<ChatWrapper />} />
-                        <Route exact path="/faqs" element={<FaqCollapse />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/faqs" element={<FaqCollapse />} />
                         <Route path="/all-categories" element={<AllCategories />} />
+                        <Route path="/all-quizzes" element={<AllQuizzes />} />
+                        <Route path="/blog" element={<AllBlogPosts />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/feedbacks" element={<Feedbacks />} />
+                        <Route path="/subscribers" element={<Subscribers />} />
+                        <Route path="/broadcasts" element={<Broadcasts />} />
+                        <Route path="/contacts-archive" element={<ContactsArchive />} />
+                        <Route path="/chat" element={<ChatWrapper />} />
                         <Route path="/course-notes" element={<Index />} />
-                        <Route exact path="/view-course/:courseId" element={<ViewCourse />} />
-                        <Route exact path="/feedbacks" element={<Feedbacks />} />
-                        <Route exact path="/subscribers" element={<Subscribers />} />
-                        <Route exact path="/broadcasts" element={<Broadcasts />} />
-                        <Route exact path="/blog" element={<AllBlogPosts />} />
-                        <Route exact path="/blog/:bPCatID" element={<ByCategory />} />
-                        <Route exact path="/create-bpost/:bPCatID" element={<AddBlogPost />} />
-                        <Route exact path="/edit-bpost/:bPSlug" element={<EditBlogPost />} />
-                        <Route exact path="/view-blog-post/:bPSlug" element={<ViewBlogPost />} />
-                        <Route path="/ads.txt" element={<div>google.com, pub-8918850949540829, DIRECT, f08c47fec0942fa0</div>} />
-                        <Route exact path="/" element={<LandingQuizzes toggleR={toggleR} />} />
-                        <Route exact path="/all-quizzes" element={<AllQuizzes />} />
-                        <Route exact path="/view-note-paper/:noteSlug" element={<ViewNotePaper />} />
-                        <Route exact path="/dashboard" element={<Dashboard />} />
-                        <Route exact path="/statistics" element={<Statistics />}>
-                            <Route path="/statistics/new-50-users" element={<UsersStats />} />
-                            <Route path="/statistics/with-image" element={<UsersStats />} />
-                            <Route path="/statistics/with-school" element={<UsersStats />} />
-                            <Route path="/statistics/with-level" element={<UsersStats />} />
-                            <Route path="/statistics/with-faculty" element={<UsersStats />} />
-                            <Route path="/statistics/with-interests" element={<UsersStats />} />
-                            <Route path="/statistics/with-about" element={<UsersStats />} />
-                            <Route path="/statistics/all-users" element={<UsersStats />} />
-                            <Route path="/statistics/top-10-quizzing-users" element={<UsersStats />} />
-                            <Route path="/statistics/top-10-downloaders" element={<UsersStats />} />
-                            <Route path="/statistics/top-10-quizzes" element={<UsersStats />} />
-                            <Route path="/statistics/quizzes-stats" element={<UsersStats />} />
-                            <Route path="/statistics/top-10-notes" element={<UsersStats />} />
-                            <Route path="/statistics/notes-stats" element={<UsersStats />} />
-                            <Route path="/statistics/quiz-categories-stats" element={<UsersStats />} />
-                            <Route path="/statistics/notes-categories-stats" element={<UsersStats />} />
-                            <Route path="/statistics/recent-ten-views" element={<BlogStats />} />
-                            <Route path="/statistics/all-posts-views" element={<BlogStats />} />
+
+                        <Route path="/category/:categoryId" element={<SingleCategory />} />
+                        <Route path="/edit-profile/:userId" element={<EditProfile />} />
+                        <Route path="/view-quiz/:quizSlug" element={<GetReady />} />
+                        <Route path="/attempt-quiz/:quizSlug" element={<QuizQuestions />} />
+                        <Route path="/quiz-results/:quizSlug" element={<QuizResults />} />
+                        <Route path="/view-question/:questionID" element={<SingleQuestion />} />
+                        <Route path="/edit-question/:questionID" element={<EditQuestion />} />
+                        <Route path="/review-quiz/:reviewId" element={<ReviewQuiz />} />
+                        <Route path="/quiz-ranking/:quizID" element={<QuizRanking />} />
+                        <Route path="/questions-create/:quizSlug" element={<CreateQuestions />} />
+                        <Route path="/view-course/:courseId" element={<ViewCourse />} />
+                        <Route path="/blog/:bPCatID" element={<ByCategory />} />
+                        <Route path="/create-bpost/:bPCatID" element={<AddBlogPost />} />
+                        <Route path="/edit-bpost/:bPSlug" element={<EditBlogPost />} />
+                        <Route path="/view-blog-post/:bPSlug" element={<ViewBlogPost />} />
+                        <Route path="/view-note-paper/:noteSlug" element={<ViewNotePaper />} />
+
+                        <Route path="/statistics" element={<Statistics />}>
+                            <Route path="new-50-users" element={<UsersStats />} />
+                            <Route path="with-image" element={<UsersStats />} />
+                            <Route path="with-school" element={<UsersStats />} />
+                            <Route path="with-level" element={<UsersStats />} />
+                            <Route path="with-faculty" element={<UsersStats />} />
+                            <Route path="with-interests" element={<UsersStats />} />
+                            <Route path="with-about" element={<UsersStats />} />
+                            <Route path="all-users" element={<UsersStats />} />
+                            <Route path="top-10-quizzing-users" element={<UsersStats />} />
+                            <Route path="top-10-downloaders" element={<UsersStats />} />
+                            <Route path="top-10-quizzes" element={<UsersStats />} />
+                            <Route path="quizzes-stats" element={<UsersStats />} />
+                            <Route path="top-10-notes" element={<UsersStats />} />
+                            <Route path="notes-stats" element={<UsersStats />} />
+                            <Route path="quiz-categories-stats" element={<UsersStats />} />
+                            <Route path="notes-categories-stats" element={<UsersStats />} />
+                            <Route path="recent-ten-views" element={<BlogStats />} />
+                            <Route path="all-posts-views" element={<BlogStats />} />
                         </Route>
+
+                        <Route path="/ads.txt" element={<div>google.com, pub-8918850949540829, DIRECT, f08c47fec0942fa0</div>} />
+                        <Route path="/" element={<LandingQuizzes toggleR={toggleR} />} />
                         <Route path="/*" element={<NotFound404 />} />
                     </Routes>
                 </Container>
+
                 <Footer />
                 <ToastContainer limit={2} style={{ fontSize: '0.8rem', textAlign: 'left' }} />
             </Suspense>
