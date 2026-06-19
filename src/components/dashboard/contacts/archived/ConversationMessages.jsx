@@ -41,7 +41,7 @@ const ConversationMessages = ({ onClose, isConversationOpen }) => {
                 setReplies(sortRepliesByDate(newReplies));
             }
         }
-    }, [oneContact]);
+    }, [oneContact, replies.length]);
 
     // Auto-scroll to bottom on new messages
     useEffect(() => {

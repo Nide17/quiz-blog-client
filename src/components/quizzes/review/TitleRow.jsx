@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
+import { useMemo, lazy, Suspense } from 'react';
 import { Row, Button, Badge } from 'reactstrap';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+const LazyPdfDownload = lazy(() => import('@/components/dashboard/utils/LazyPdfDownload'));
 import { useSelector } from 'react-redux';
-import PdfDocument from '@/components/dashboard/pdfs/PdfDocument';
 
 // Constants
 const SCORE_THRESHOLDS = {
@@ -75,58 +74,36 @@ const ScoreBadge = ({ scorePercent }) => {
 // PDF Download Button Component
 const PDFDownloadButton = ({ thisReview }) => {
     if (!thisReview) return null;
-
     return (
-        <PDFDownloadLink
-            document={<PdfDocument review={thisReview} />}
-            fileName={`${thisReview.title}-Quiz-Review.pdf`}
-            className="text-decoration-none"
-        >
-            {({ loading, error }) => {
-                if (loading) {
-                    return (
-                        <Button
-                            color="secondary"
-                            size="sm"
-                            className="fw-bold px-3 py-2 d-flex align-items-center"
-                            disabled
-                        >
+        <Suspense fallback={<Button color="secondary" size="sm" disabled>...</Button>}>
+            <LazyPdfDownload
+                review={thisReview}
+                fileName={`${thisReview.title}-Quiz-Review.pdf`}
+                className="text-decoration-none"
+            >
+                {({ loading, error }) => {
+                    if (loading) return (
+                        <Button color="secondary" size="sm" className="fw-bold px-3 py-2 d-flex align-items-center" disabled>
                             <i className="fa fa-spinner fa-spin me-2"></i>
                             <span className="d-none d-sm-inline">Generating...</span>
-                            <span className="d-inline d-sm-none">...</span>
                         </Button>
                     );
-                }
-
-                if (error) {
-                    return (
-                        <Button
-                            color="danger"
-                            size="sm"
-                            className="fw-bold px-3 py-2 d-flex align-items-center"
-                            disabled
-                        >
+                    if (error) return (
+                        <Button color="danger" size="sm" className="fw-bold px-3 py-2 d-flex align-items-center" disabled>
                             <i className="fa fa-exclamation-triangle me-2"></i>
                             <span className="d-none d-sm-inline">Error</span>
-                            <span className="d-inline d-sm-none">!</span>
                         </Button>
                     );
-                }
-
-                return (
-                    <Button
-                        color="success"
-                        size="sm"
-                        className="fw-bold px-3 py-2 d-flex align-items-center"
-                        style={{ transition: 'all 0.2s ease-in-out' }}
-                    >
-                        <i className="fa fa-download me-2"></i>
-                        <span className="d-none d-sm-inline">Download PDF</span>
-                        <span className="d-inline d-sm-none">PDF</span>
-                    </Button>
-                );
-            }}
-        </PDFDownloadLink>
+                    return (
+                        <Button color="success" size="sm" className="fw-bold px-3 py-2 d-flex align-items-center" style={{ transition: 'all 0.2s ease-in-out' }}>
+                            <i className="fa fa-download me-2"></i>
+                            <span className="d-none d-sm-inline">Download PDF</span>
+                            <span className="d-inline d-sm-none">PDF</span>
+                        </Button>
+                    );
+                }}
+            </LazyPdfDownload>
+        </Suspense>
     );
 };
 

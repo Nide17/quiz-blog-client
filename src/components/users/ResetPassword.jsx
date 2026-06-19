@@ -3,7 +3,6 @@ import { Row, Col, Button, Form, Input } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ResponsiveAd from "@/components/adsenses/ResponsiveAd";
-import SquareAd from "@/components/adsenses/SquareAd";
 import isAdEnabled from "@/utils/isAdEnabled";
 import Jumbotron from "@/utils/Jumbotron";
 import { sendNewPassword } from "@/redux/slices/usersSlice";

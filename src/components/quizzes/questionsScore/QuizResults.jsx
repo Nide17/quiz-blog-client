@@ -9,18 +9,14 @@ import {
 } from "react";
 import { Button } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+const LazyPdfDownload = lazy(() => import('@/components/dashboard/utils/LazyPdfDownload'));
 import { useSelector, useDispatch } from "react-redux";
-
 import { logRegContext } from "@/contexts/appContexts";
 import { createScore } from '@/redux/slices/scoresSlice';
-
 import ResponsiveAd from "@/components/adsenses/ResponsiveAd";
 import QBLoadingSM from "@/utils/rLoading/QBLoadingSM";
 import isAdEnabled from "@/utils/isAdEnabled";
-
 import MarksStatus from "./MarksStatus";
-import PdfDocument from "@/components/dashboard/pdfs/PdfDocument";
 import RatingQuiz from "./RatingQuiz";
 import RelatedNotes from "./RelatedNotes";
 import SimilarQuizzes from "./SimilarQuizzes";
@@ -124,57 +120,33 @@ const ReviewAnswersButton = ({ scoreToSaveID, scoreToSave }) => (
 );
 
 const PdfDownloadButton = ({ quiz, review }) => (
-  <PDFDownloadLink
-    document={<PdfDocument review={review} />}
-    fileName={`${quiz?.title}-shared-by-Quiz-Blog.pdf`}
-  >
-    {({ loading, error }) => {
-      if (loading) {
-        return (
-          <Button
-            color="secondary"
-            className="px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center justify-content-center"
-            style={{ minWidth: '120px' }}
-            disabled
-          >
+  <Suspense fallback={<Button color="secondary" className="px-3 px-sm-4 py-2" disabled>...</Button>}>
+      <LazyPdfDownload review={review} fileName={`${quiz?.title}-shared-by-Quiz-Blog.pdf`}>
+      {({ loading, error }) => {
+        if (loading) return (
+          <Button color="secondary" className="px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center" style={{ minWidth: '120px' }} disabled>
             <i className="fa fa-spinner fa-spin me-2"></i>
             <span className="d-none d-sm-inline">Generating...</span>
             <span className="d-inline d-sm-none">...</span>
           </Button>
         );
-      }
-
-      if (error) {
-        return (
-          <Button
-            color="danger"
-            className="px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center justify-content-center"
-            style={{ minWidth: '120px' }}
-            disabled
-          >
+        if (error) return (
+          <Button color="danger" className="px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center" style={{ minWidth: '120px' }} disabled>
             <i className="fa fa-exclamation-triangle me-2"></i>
             <span className="d-none d-sm-inline">Error</span>
             <span className="d-inline d-sm-none">!</span>
           </Button>
         );
-      }
-
-      return (
-        <Button
-          color="success"
-          className="px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center justify-content-center"
-          style={{
-            minWidth: '120px',
-            transition: 'all 0.2s ease-in-out',
-          }}
-        >
-          <i className="fa fa-download me-2"></i>
-          <span className="d-none d-sm-inline">Download PDF</span>
-          <span className="d-inline d-sm-none">PDF</span>
-        </Button>
-      );
-    }}
-  </PDFDownloadLink>
+        return (
+          <Button color="success" className="px-3 px-sm-4 py-2 fw-semibold shadow-sm d-flex align-items-center" style={{ minWidth: '120px', transition: 'all 0.2s ease-in-out' }}>
+            <i className="fa fa-download me-2"></i>
+            <span className="d-none d-sm-inline">Download PDF</span>
+            <span className="d-inline d-sm-none">PDF</span>
+          </Button>
+        );
+      }}
+    </LazyPdfDownload>
+  </Suspense>
 );
 
 const LoginPromptButton = ({ toggleL }) => (

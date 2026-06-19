@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, lazy, Suspense } from 'react';
-import { Col, Row, Button, Card, CardBody, CardTitle, CardSubtitle, Alert } from 'reactstrap';
+import { Col, Row, Button, Card, CardBody } from 'reactstrap';
 import { getLimitedQuizzes, getQuizzes } from '@/redux/slices/quizzesSlice';
 import { useSelector, useDispatch } from 'react-redux';
 

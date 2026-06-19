@@ -1,16 +1,17 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
 import { Button, Form, FormGroup, Label, Input, Row, Col, Alert, Breadcrumb, BreadcrumbItem, FormText, Card, CardBody, Spinner } from 'reactstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateBlogPost, getOneBlogPost } from '@/redux/slices';
 import { getPostCategories } from '@/redux/slices/postCategoriesSlice';
-import TipTapEditor from './TipTapEditor';
-import UploadPostPhotos from './UploadPostPhotos';
-import YourImages from './YourImages';
+const TipTapEditor = lazy(() => import('./TipTapEditor'));
+const UploadPostPhotos = lazy(() => import('./UploadPostPhotos'));
+const YourImages = lazy(() => import('./YourImages'));
 import { notify } from '@/utils/notifyToast';
 import NotAuthenticated from '@/components/users/NotAuthenticated';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 
 // Constants
 const VALIDATION_CONFIG = {
@@ -578,11 +579,13 @@ const EditBlogPost = () => {
                 </Label>
 
                 {formState.content !== '' && (
-                  <TipTapEditor
-                    onChange={handleEditorChange}
-                    initialValue={formState.content}
-                    minHeight="400px"
-                  />
+                  <Suspense fallback={<QBLoadingSM />}>
+                    <TipTapEditor
+                      onChange={handleEditorChange}
+                      initialValue={formState.content}
+                      minHeight="400px"
+                    />
+                  </Suspense>
                 )}
                 <FormText color={contentLength < VALIDATION_CONFIG.minContent ? 'warning' : 'muted'}>
                   {contentLength} characters (minimum {VALIDATION_CONFIG.minContent})
@@ -660,8 +663,12 @@ const EditBlogPost = () => {
       </Col>
 
       <Col sm="4" className="mt-md-2">
-        <UploadPostPhotos />
-        <YourImages />
+        <Suspense fallback={<QBLoadingSM />}>
+          <UploadPostPhotos />
+        </Suspense>
+        <Suspense fallback={<QBLoadingSM />}>
+          <YourImages />
+        </Suspense>
       </Col>
     </Row>
   );

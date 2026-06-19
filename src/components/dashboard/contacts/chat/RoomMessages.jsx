@@ -166,7 +166,7 @@ const RoomMessages = ({ roomOpen, room, onlineList, onClose, showAllChats, isTem
 
         // Focus back on textarea
         textareaRef.current?.focus();
-    }, [messageContent, room, existingRoom, dispatch, user, isCreatingRoom]);
+    }, [messageContent, room, existingRoom, dispatch, user, isCreatingRoom, isTemporary, onRoomCreated]);
 
     /* ------------------ SOCKET LISTENERS ------------------ */
     const handleNewMessage = useCallback((newMessage) => {
@@ -204,7 +204,7 @@ const RoomMessages = ({ roomOpen, room, onlineList, onClose, showAllChats, isTem
             socketOff('userJoinedRoom', handleUserJoined);
         };
 
-    }, [existingRoom?._id, handleNewMessage]);
+    }, [existingRoom?._id, handleNewMessage, handleUserJoined]);
 
     /* ------------------ KEYBOARD SHORTCUTS ------------------ */
     useEffect(() => {

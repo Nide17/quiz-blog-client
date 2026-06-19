@@ -54,7 +54,7 @@ const RatingQuiz = ({ isOpen, toggle, quiz, score, user }) => {
         } catch {
             localStorage.removeItem(feedbackKey);
         }
-    }, [quiz, user, feedbackKey, isOpen, toggle]);
+    }, [quiz, user, feedbackKey, isOpen, toggle, ONE_HOUR]);
 
     // --- Helpers -------------------------------------------------------
     const validate = () => {

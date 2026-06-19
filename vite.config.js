@@ -20,8 +20,10 @@ export default defineConfig(() => {
             },
             rollupOptions: {
                 output: {
+                    codeSplitting: true,
                     // Separate assets by type for better caching
                     assetFileNames: (assetInfo) => {
+
                         if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)) {
                             return `assets/media/[name]-[hash][extname]`;
                         }
@@ -44,6 +46,8 @@ export default defineConfig(() => {
                             'ui-vendor': ['bootstrap', 'reactstrap', 'react-tabs', 'react-collapse', 'react-toastify'],
                             'charts-vendor': ['react-google-charts'],
                             'pdf-vendor': ['@react-pdf/renderer'],
+                            'tiptap-vendor': ['@tiptap/react', '@tiptap/starter-kit', '@tiptap/extension-image', '@tiptap/extension-underline'],
+                            'xlsx-vendor': ['xlsx'],
                             'utils-vendor': ['axios', 'uuid', 'socket.io-client'],
                             'content-vendor': ['react-markdown', 'rehype-highlight'],
                             'analytics-vendor': ['react-ga4', 'react-adsense', 'web-vitals']
@@ -54,7 +58,7 @@ export default defineConfig(() => {
                                 return chunkName;
                             }
                         }
-                    }
+                    },
                 }
             }
         },

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Jumbotron = ({ h1, p, small }) => {
     return (
         < div className="jbtron rounded px-4 py-4 py-sm-5 text-center border border-info my-4 w-100" >
