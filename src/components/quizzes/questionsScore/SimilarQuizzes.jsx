@@ -22,7 +22,7 @@ const shuffleArray = (array) => {
 };
 
 // Section Header Component
-const SectionHeader = ({ categoryTitle }) => (
+const SectionHeader = () => (
   <div className="text-center mb-4 mb-md-5 px-2">
     <h4 className="fw-bold mb-2 mb-sm-3 fs-5 fs-md-4" style={{ color: 'var(--brand)' }}>
       <i className="fa fa-lightbulb me-2"></i>
@@ -274,7 +274,7 @@ const SimilarQuizzes = ({ thisQuiz }) => {
   return (
     <div className="similar-quizzes my-4 my-sm-5 px-2 px-md-3">
       {/* Section Header */}
-      <SectionHeader categoryTitle={categoryData.category?.title} />
+      <SectionHeader />
 
       {/* Quiz Cards */}
       <Row className="g-3 g-md-4">

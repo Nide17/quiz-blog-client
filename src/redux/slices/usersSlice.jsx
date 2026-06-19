@@ -319,7 +319,7 @@ const usersSlice = createSlice({
         'Password reset link sent to your email! Can\'t find it? Check your spam folder.'
       );
     });
-    builder.addCase(sendNewPassword.fulfilled, (state, action) => {
+    builder.addCase(sendNewPassword.fulfilled, (state) => {
       state.isLoading = false;
       notify('Password reset successful! Please login with your new password.');
     });

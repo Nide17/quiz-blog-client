@@ -1,13 +1,14 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, lazy, Suspense } from 'react';
 import { Button, Form, FormGroup, Label, Input, Row, Col, Alert, Breadcrumb, BreadcrumbItem, FormText, Card, CardBody, Spinner } from 'reactstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBlogPost } from '@/redux/slices';
-import TipTapEditor from './TipTapEditor';
-import UploadPostPhotos from './UploadPostPhotos';
-import YourImages from './YourImages';
+const TipTapEditor = lazy(() => import('./TipTapEditor'));
+const UploadPostPhotos = lazy(() => import('./UploadPostPhotos'));
+const YourImages = lazy(() => import('./YourImages'));
 import { notify } from '@/utils/notifyToast';
 import NotAuthenticated from '@/components/users/NotAuthenticated';
+import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 
 // Constants
 const VALIDATION_CONFIG = {
@@ -149,7 +150,7 @@ const AddBlogPost = () => {
     // Form state
     const [formState, setFormState] = useState({
         title: '',
-        content: '', // Store HTML content from Lexical
+        content: '', // Store HTML content
         bgColor: '',
     });
     const [postImage, setPostImage] = useState(null);
@@ -394,11 +395,13 @@ const AddBlogPost = () => {
                                 <Label className="fw-bold text-success">
                                     Content <span className="text-danger">*</span>
                                 </Label>
-                                <TipTapEditor
-                                    onChange={handleEditorChange}
-                                    initialValue=""
-                                    minHeight="400px"
-                                />
+                                <Suspense fallback={<QBLoadingSM />}>
+                                    <TipTapEditor
+                                        onChange={handleEditorChange}
+                                        initialValue=""
+                                        minHeight="400px"
+                                    />
+                                </Suspense>
                                 <FormText color={contentLength < VALIDATION_CONFIG.minContent ? 'warning' : 'muted'}>
                                     {contentLength} characters (minimum {VALIDATION_CONFIG.minContent})
                                 </FormText>
@@ -450,8 +453,12 @@ const AddBlogPost = () => {
             </Col>
 
             <Col sm="4" className="mt-md-2">
-                <UploadPostPhotos />
-                <YourImages />
+                <Suspense fallback={<QBLoadingSM />}>
+                    <UploadPostPhotos />
+                </Suspense>
+                <Suspense fallback={<QBLoadingSM />}>
+                    <YourImages />
+                </Suspense>
             </Col>
         </Row>
     );

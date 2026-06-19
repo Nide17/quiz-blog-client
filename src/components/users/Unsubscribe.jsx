@@ -5,6 +5,7 @@ import { Row, Button } from "reactstrap";
 import { unsubscribe } from "@/redux/slices/subscribersSlice";
 import { notify } from "@/utils/notifyToast";
 import QBLoadingSM from "@/utils/rLoading/QBLoadingSM";
+import Jumbotron from "@/utils/Jumbotron";
 
 export default function Unsubscribe() {
     const dispatch = useDispatch();

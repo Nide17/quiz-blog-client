@@ -1,25 +1,14 @@
-import { lazy, Suspense } from 'react';
-import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PdfDocument from './pdfs/PdfDocument';
 
-// Lazy load PDF components
-const PDFDownloadLink = lazy(() =>
-  import('@react-pdf/renderer').then(module => ({
-    default: module.PDFDownloadLink
-  }))
+const LazyPdfDownload = ({ review, fileName, children, ...props }) => (
+  <PDFDownloadLink
+    document={<PdfDocument review={review} />}
+    fileName={fileName}
+    {...props}
+  >
+    {children}
+  </PDFDownloadLink>
 );
-
-const LazyPdfDownload = ({ document, fileName, children, ...props }) => {
-  return (
-    <Suspense fallback={<QBLoadingSM />}>
-      <PDFDownloadLink
-        document={document}
-        fileName={fileName}
-        {...props}
-      >
-        {children}
-      </PDFDownloadLink>
-    </Suspense>
-  );
-};
 
 export default LazyPdfDownload;

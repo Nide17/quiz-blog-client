@@ -29,15 +29,12 @@ const getApiUrl = () => {
   // Priority 1: Explicit environment variable
   const envUrl = import.meta.env.VITE_BACKEND_URL;
   if (envUrl) {
-    console.log('🔧 Using VITE_BACKEND_URL:', envUrl);
     return envUrl.endsWith('/') ? envUrl : `${envUrl}/`;
   }
 
   // Priority 2: Mode-based fallback
   const mode = import.meta.env.MODE;
   const fallbackUrl = BACKEND_URLS[mode] || BACKEND_URLS.production;
-
-  console.log('🔧 Using fallback URL:', fallbackUrl, `(mode: ${mode})`);
   return fallbackUrl;
 };
 

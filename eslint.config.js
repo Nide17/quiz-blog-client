@@ -1,47 +1,23 @@
-import js from "@eslint/js";
-import globals from "globals";
-import pluginReact from "eslint-plugin-react";
-// Assuming 'eslint/config' provides necessary utilities like 'defineConfig'
-// If 'defineConfig' isn't needed, you can export the array directly
-// import { defineConfig } from "eslint/config"; 
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
 
-// The easiest fix is to include the jsx-runtime configuration
-const reactRecommendedWithRuntime = {
-  ...pluginReact.configs.flat.recommended,
-  rules: {
-    ...pluginReact.configs.flat.recommended.rules,
-    // Explicitly turn these rules off as 'jsx-runtime' handles them
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off",
-    "react/prop-types": "off",
-  },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
-};
-
-// Export the configuration array
 export default [
-  {
-    ignores: ["build/**", "dist/**", "coverage/**", "node_modules/**"],
-  },
-  // Apply standard JS recommended rules
+  { ignores: ['build/**', 'dist/**', 'node_modules/**'] },
   js.configs.recommended,
   {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
-      globals: globals.browser
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: { ...globals.browser, ...globals.node },
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    plugins: { 'react-hooks': reactHooks },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': 'warn',
+      'no-console': 'warn',
     },
   },
-  {
-    // Apply React settings to files that need them
-    files: ["**/*.{js,mjs,cjs,jsx}"],
-    ...reactRecommendedWithRuntime,
-  },
-  // OR, if you just want to use the official runtime extension:
-  // Note: The 'recommended' config might already pull in the 'jsx-runtime' if configured correctly,
-  // but overriding rules explicitly is often clearer.
-  // ...pluginReact.configs.flat.all, // use 'all' for verbose configs if you like
 ];

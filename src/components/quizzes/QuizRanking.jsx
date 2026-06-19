@@ -36,7 +36,7 @@ const QuizRanking = () => {
       categoryTitle: thisQuiz?.category?.title || 'Category',
       totalParticipants: rankingScores?.length || 0,
     };
-  }, [rankingScores, quizID]);
+  }, [rankingScores, thisQuiz?.title, thisQuiz?.category?.title]);
 
   // Calculate statistics
   const statistics = useMemo(() => {

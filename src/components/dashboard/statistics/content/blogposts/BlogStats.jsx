@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import TableData from '../TableData';
+import { useEffect, useState, lazy } from 'react';
+const TableData  = lazy(() => import('../TableData'));
 import { useLocation } from 'react-router-dom';
 import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 import { getRecentTenViews, getBlogPostsViews } from '@/redux/slices/blogPostsViewsSlice';
@@ -32,7 +32,7 @@ const BlogStats = () => {
             default:
                 break;
         }
-    }, [location, getRecentTenViews, getBlogPostsViews]);
+    }, [location, dispatch]);
 
     // Updating the state according to the current route and the data returned from the server
     useEffect(() => {

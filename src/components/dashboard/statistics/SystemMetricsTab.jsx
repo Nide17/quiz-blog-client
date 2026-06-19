@@ -1,5 +1,5 @@
 // SystemMetricsTab.jsx
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import {
     Row,
     Col,
@@ -89,14 +89,12 @@ const SystemMetricsTab = () => {
         450
     );
 
-    const fetchSystemMetrics = () => {
-        if (!isAuthenticated || !user?.role?.includes("Admin")) {
-            // Do not dispatch if user is not allowed; slice can manage its own errors if needed
-            return;
+    const fetchSystemMetrics = useCallback(() => {
+        if (isAuthenticated && user?.role?.includes("Admin")) {
+            dispatch(getSystemMetrics());
+            setLastUpdated(new Date().toLocaleTimeString());
         }
-        dispatch(getSystemMetrics());
-        setLastUpdated(new Date().toLocaleTimeString());
-    };
+    }, [isAuthenticated, user, dispatch]);
 
     useEffect(() => {
         if (!isAuthenticated || !user?.role?.includes("Admin")) return;
@@ -104,7 +102,7 @@ const SystemMetricsTab = () => {
         fetchSystemMetrics(); // initial load
         const interval = setInterval(fetchSystemMetrics, 60000);
         return () => clearInterval(interval);
-    }, [isAuthenticated, user]);
+    }, [isAuthenticated, user, dispatch, fetchSystemMetrics]);
 
 
     return (
