@@ -1,5 +1,6 @@
 import { Row, Col } from 'reactstrap';
 import reading from '@/images/reading.svg';
+import Jumbotron from '@/utils/Jumbotron';
 
 const Intro = () => {
     return (
@@ -20,7 +21,7 @@ const Intro = () => {
                     </h2>
 
                     <p className="lead mb-3 text-center">
-                        Quiz-Blog offers a wide range of quizzes and study resources to help students sharpen their skills and excel in exams. Our blog covers multiple subjects, providing insights that make learning easier and more effective.
+                        Quiz-Blog provides quizzes and study resources that help students build their skills and succeed in exams. Our blog covers different subjects and shares useful insights to make learning simpler and more effective.
                     </p>
                     <hr className="my-2" style={{ borderColor: 'var(--brand)' }} />
                 </Col>
@@ -28,19 +29,11 @@ const Intro = () => {
 
             {/* Journey Section */}
             <Row className="px-3 px-lg-5 mt-5">
-                <div className="jbtron rounded px-3 px-sm-4 py-4 my-3 my-lg-5 shadow-sm bg-white">
-                    <h2 className="fw-bolder text-center mb-4" style={{ color: 'var(--accent)' }}>
-                        Our Journey
-                    </h2>
-
-                    <p className="text-center mb-3">
-                        Bruce began university in 2019 and struggled to find enough practice materials for self-directed learning.
-                        To solve this, he collaborated with his brother, a software developer, to create Quiz-Blog — a platform offering Multiple Choice Questions (MCQs) for students.
-                        Initially focused on health sciences, Quiz-Blog now provides resources for various subjects, helping students in Rwanda and worldwide improve their academic performance.
-                    </p>
-
-                    <hr className="my-3" style={{ height: '2px', backgroundColor: 'var(--brand)', border: 'none' }} />
-                </div>
+                <Jumbotron
+                    h1="Our Journey"
+                    p="Bruce started university in 2019 and struggled to find enough materials for self-study. To solve this, he worked with his brother, a software developer, to create Quiz-Blog, a platform that provides Multiple Choice Questions (MCQs) for students. What began with health sciences has grown to cover many subjects, helping students in Rwanda and around the world improve their learning."
+                    small=""
+                />
             </Row>
 
         </div>

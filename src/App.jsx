@@ -36,7 +36,7 @@ import EditQuestion from '@/components/dashboard/quizzing/questions/EditQuestion
 import Broadcasts from '@/components/dashboard/contacts/broadcasts/Broadcasts';
 import Dashboard from '@/components/dashboard/Dashboard';
 import Index from '@/components/dashboard/courses/Index';
-import ViewCourse from '@/components/courseNotes/ViewCourse';
+import ViewCourse from '@/components/notes/ViewCourse';
 import Feedbacks from '@/components/dashboard/scores/Feedbacks';
 import AllBlogPosts from '@/components/blog/AllBlogPosts';
 import AddBlogPost from '@/components/dashboard/posts/blog/AddBlogPost';

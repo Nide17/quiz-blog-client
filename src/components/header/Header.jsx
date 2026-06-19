@@ -3,7 +3,6 @@ import { Navbar, NavbarBrand, NavLink, Dropdown, DropdownToggle, DropdownMenu, D
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Logout from '@/components/users/Logout';
-import CatDropdown from './CatDropdown';
 import logo from '@/images/quizLogo.svg';
 import { logRegContext } from '@/contexts/appContexts';
 import EditPictureModal from '@/components/users/EditPictureModal';
@@ -147,7 +146,6 @@ const Header = ({ textContent }) => {
                     <img src={logo} alt="Quiz-Blog Logo" className="site-logo" />
                 </NavbarBrand>
                 <div className="collapse px-1 px-sm-2 py-1 mx-0 m-sm-0 nav-items">
-                    <CatDropdown />
                     <span className="me-1 ms-sm-4 me-md-4">
                         <Link to="/course-notes" className="nav-link-custom">Notes</Link>
                     </span>

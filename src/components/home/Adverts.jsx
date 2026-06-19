@@ -41,35 +41,17 @@ const Adverts = () => {
             };
 
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center mt-3">
-            <Link to={advert.link || "#"} target="_blank" className="d-flex justify-content-center w-100">
+        <div className="advert-container">
+            <Link to={advert.link || "#"} target="_blank" className="advert-link">
                 <ImageWithFallback
                     src={advert.advert_image || advert.fallback}
                     alt="Advert"
                     fallback={adPlaceholder}
-                    className="img-fluid shadow-sm"
-                    style={{
-                        maxWidth: "90%",
-                        border: "2px solid var(--brand)",
-                        borderRadius: "22px",
-                        transition: "transform 0.3s ease",
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-                    onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                    className="advert-image"
                 />
             </Link>
 
-            <p
-                className="mt-3 mb-0 text-center px-3 py-2 fw-bold"
-                style={{
-                    maxWidth: "90%",
-                    backgroundColor: "rgb(255, 193, 7)",
-                    color: "#000",
-                    border: "2px solid var(--brand)",
-                    borderRadius: "5px",
-                    fontSize: "0.9rem",
-                }}
-            >
+            <p className="advert-caption">
                 {advert.caption}
             </p>
         </div>

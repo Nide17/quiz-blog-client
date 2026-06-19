@@ -9,6 +9,7 @@ import FeedbacksTable from './FeedbacksTable';
 import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 import NotAuthenticated from '@/components/users/NotAuthenticated';
 import Dashboard from '@/components/dashboard/Dashboard';
+import Jumbotron from '@/utils/Jumbotron';
 
 const Feedbacks = () => {
     const dispatch = useDispatch();
@@ -26,19 +27,10 @@ const Feedbacks = () => {
 
     return (
         <div className="px-3 px-sm-4 py-3 py-sm-5 d-flex flex-column align-items-center">
-
-            {/* ---------------- JBTRON / HEADER ---------------- */}
-            <div className="jbtron rounded w-lg-75 px-3 px-sm-4 py-3 py-sm-5 p-2 m-2 text-center border border-info mx-auto">
-                <h1 className="display-4 fw-bolder text-center my-3 mb-lg-4"
-                    style={{ color: 'var(--accent)' }}>
-                    Users Feedback
-                </h1>
-
-                <p className="lead mb-1 mb-lg-4 text-white">
-                    These are comments and ratings submitted by quiz takers.
-                </p>
-            </div>
-            {/* -------------------------------------------------- */}
+            <Jumbotron
+                h1="Users Feedback"
+                p="These are comments and ratings submitted by quiz takers."
+            />
 
             {isLoading ? (
                 <QBLoadingSM title='feedbacks' />

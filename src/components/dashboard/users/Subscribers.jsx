@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 import { formatDateTime } from '@/utils/dateFormat';
 import DeleteModal from '@/utils/DeleteModal';
+import Jumbotron from "@/utils/Jumbotron";
 
 const Subscribers = () => {
     const { isLoading, subscribedUsers } = useSelector(state => state.subscribers);
@@ -17,17 +18,10 @@ const Subscribers = () => {
     return (
         <div className="subscribers-section px-3 px-sm-4 py-3 py-sm-5 d-flex flex-column align-items-center">
 
-            {/* Jumbotron / header */}
-            <div className="jbtron rounded w-lg-75 px-3 px-sm-4 py-3 py-sm-5 p-2 m-2 text-center border border-info">
-                <h1 className="display-4 fw-bolder text-center my-3 mb-lg-4"
-                    style={{ color: 'var(--accent)' }}>
-                    Subscribers List
-                </h1>
-
-                <p className="lead mb-1 mb-lg-4 text-white">
-                    These are all users who subscribed to Quiz-Blog updates, newsletters, and new quiz notifications.
-                </p>
-            </div>
+            <Jumbotron
+                h1="Subscribers List"
+                p="These are all users who subscribed to Quiz-Blog updates, newsletters, and new quiz notifications."
+            />
 
             <Row className="w-100 mt-4">
                 {isLoading ? (

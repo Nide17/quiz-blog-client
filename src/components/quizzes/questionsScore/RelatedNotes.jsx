@@ -8,8 +8,6 @@ import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 
 // Constants
 const MAX_DISPLAYED_NOTES = 3;
-const BRAND_COLOR = '#157a6e';
-const ACCENT_COLOR = '#ffc107';
 
 // Helper Functions
 const shuffleArray = (array) => {
@@ -44,7 +42,7 @@ const SectionHeader = () => (
   <div className="text-center mb-4 mb-md-5 px-2">
     <h4
       className="fw-bold mb-2 mb-sm-3 fs-5 fs-md-4"
-      style={{ color: BRAND_COLOR }}
+      style={{ color: 'var(--brand)' }}
     >
       <i className="fa fa-book-open me-2"></i>
       <span className="d-none d-sm-inline">Helpful Study Resources</span>
@@ -76,7 +74,7 @@ const FileBadges = ({ fileType, fileSize }) => {
         className="px-2 py-1"
         style={{
           backgroundColor: '#f3f3f2',
-          color: BRAND_COLOR,
+          color: 'var(--brand)',
           fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)',
         }}
       >
@@ -89,7 +87,7 @@ const FileBadges = ({ fileType, fileSize }) => {
           className="px-2 py-1"
           style={{
             backgroundColor: '#f3f3f2',
-            color: BRAND_COLOR,
+            color: 'var(--brand)',
             fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)',
           }}
         >
@@ -114,7 +112,7 @@ const NoteStats = ({ pages, downloads }) => {
         <div className="text-center flex-fill">
           <div
             className="fw-bold fs-6 fs-sm-5"
-            style={{ color: BRAND_COLOR }}
+            style={{ color: 'var(--brand)' }}
           >
             {pages}
           </div>
@@ -132,7 +130,7 @@ const NoteStats = ({ pages, downloads }) => {
         >
           <div
             className="fw-bold fs-6 fs-sm-5"
-            style={{ color: BRAND_COLOR }}
+            style={{ color: 'var(--brand)' }}
           >
             {downloads}
           </div>
@@ -178,7 +176,7 @@ const NoteCard = ({ note, index }) => {
           <h5
             className="fw-bold mb-2 mb-sm-3 fs-6 fs-sm-5"
             style={{
-              color: BRAND_COLOR,
+              color: 'var(--brand)',
               lineHeight: '1.4',
             }}
           >
@@ -209,7 +207,7 @@ const NoteCard = ({ note, index }) => {
               color="success"
               className="w-100 fw-bold py-2"
               style={{
-                backgroundColor: BRAND_COLOR,
+                backgroundColor: 'var(--brand)',
                 border: 'none',
                 transition: 'all 0.2s ease-in-out',
                 fontSize: 'clamp(0.875rem, 2vw, 1rem)',
@@ -226,7 +224,6 @@ const NoteCard = ({ note, index }) => {
   );
 };
 
-// Browse All Button Component
 const BrowseAllButton = () => (
   <div className="text-center mt-4 mt-sm-5 px-2">
     <Link to="/course-notes" className="text-decoration-none">
@@ -236,15 +233,15 @@ const BrowseAllButton = () => (
         size="lg"
         className="px-4 px-sm-5 py-2 py-sm-3 fw-bold"
         style={{
-          borderColor: ACCENT_COLOR,
-          color: BRAND_COLOR,
+          borderColor: 'var(--accent)',
+          color: 'var(--accent)',
           transition: 'all 0.2s ease-in-out',
           fontSize: 'clamp(0.875rem, 2vw, 1rem)',
         }}
       >
         <i className="fa fa-book me-2"></i>
-        <span className="d-none d-sm-inline">Browse All Notes</span>
-        <span className="d-inline d-sm-none">All Notes</span>
+        <span className="d-none d-sm-inline">Browse all notes</span>
+        <span className="d-inline d-sm-none">All notes</span>
       </Button>
     </Link>
   </div>
@@ -332,7 +329,6 @@ const RelatedNotes = ({ ccatgID }) => {
         ))}
       </Row>
 
-      {/* Browse All Link */}
       <BrowseAllButton />
 
       {/* Help Text */}

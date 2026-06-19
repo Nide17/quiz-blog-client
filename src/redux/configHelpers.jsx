@@ -204,9 +204,10 @@ export const apiCallHelper = async (
       if (willRetry) {
         if (!toastControl.retryNotified) {
           notify(
-            `Cannot get data. Retrying in ${retryDelay / 1000}s... (${attempt}/${retries})`,
+            `Retrying in ${retryDelay / 1000}s... (${attempt}/${retries})`,
             'error'
           );
+          console.log(`Retrying API call to ${url} (attempt ${attempt} of ${retries})`);
           toastControl.retryNotified = true;
         }
 

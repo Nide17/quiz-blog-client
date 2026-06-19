@@ -8,6 +8,7 @@ import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 import ResponsiveAd from '@/components/adsenses/ResponsiveAd';
 import isAdEnabled from '@/utils/isAdEnabled';
 import SquareAd from '@/components/adsenses/SquareAd';
+import Jumbotron from '@/utils/Jumbotron';
 
 const QuizItem = lazy(() => import('./QuizItem'));
 
@@ -17,58 +18,37 @@ const MIN_QUESTIONS = 5;
 
 // Hero Section Component
 const HeroSection = () => (
-    <Card className="border-0 shadow-sm bg-gradient mb-4 mb-md-5">
-        <CardBody className="text-center py-3 py-md-4 px-2 px-md-4">
-            <CardTitle tag="h1" className="mb-3 mb-md-4 text-uppercase fw-bolder fs-3 fs-md-2 text-primary">
-                Knowledge matters, and so does the joy of quizzing!
-            </CardTitle>
-            <CardSubtitle tag="p" className="text-muted lead fs-4 fs-md-3">
-                <span className="badge bg-light text-dark p-3 p-md-4 rounded-pill">
-                    ~ Welcome! Explore and test your knowledge as you please! ~
-                </span>
-            </CardSubtitle>
-        </CardBody>
-    </Card>
-);
-
-// Motivational Alert Component
-const MotivationalAlert = () => (
-    <Row>
-        <Col xs="12" className="px-3 px-md-4">
-            <Alert color="info" className="text-center py-2 py-md-3 mb-4 mb-md-5 shadow-sm">
-                <h4 className="mb-0 fw-bold fs-5 fs-md-4">
-                    Get ready for exam success! Let&apos;s make it happen together!{' '}
-                    <span role="img" aria-label="celebrate">🍾🎉</span>
-                </h4>
-            </Alert>
-        </Col>
-    </Row>
+    <div className="d-flex justify-content-center px-3 px-md-4 mb-4">
+        <Jumbotron
+            h1="Quiz library"
+            p="Ready for a quick challenge?"
+            small="Explore a wide range of quizzes to test your knowledge."
+        />
+    </div>
 );
 
 // Search Section Component
 const SearchSection = ({ setSearchKey, isLoading }) => {
     if (isLoading) {
         return (
-            <Card className="border-0 shadow-sm mb-3">
-                <CardBody className="p-3 d-flex justify-content-center align-items-center">
+            <div className="d-flex justify-content-center mb-4">
+                <div className="p-3 d-flex justify-content-center align-items-center">
                     <QBLoadingSM />
-                </CardBody>
-            </Card>
+                </div>
+            </div>
         );
     }
 
     return (
-        <Card className="border-0 shadow-sm mb-4">
-            <CardBody className="p-2 p-md-3 d-flex justify-content-center">
-                <div style={{ width: '100%', maxWidth: '600px' }}>
-                    <SearchInput
-                        setSearchKey={setSearchKey}
-                        placeholder="Search quizzes here..."
-                        aria-label="Search quizzes"
-                    />
-                </div>
-            </CardBody>
-        </Card>
+        <div className="d-flex justify-content-center mb-4">
+            <div className="w-100" style={{ maxWidth: '640px' }}>
+                <SearchInput
+                    setSearchKey={setSearchKey}
+                    placeholder="Search quizzes here..."
+                    aria-label="Search quizzes"
+                />
+            </div>
+        </div>
     );
 };
 
@@ -80,7 +60,7 @@ const SearchResults = ({ searchKey, filteredQuizzes }) => {
         <Card className="border-0 shadow-sm mb-3">
             <CardBody className="p-3">
                 <h5 className="mb-3 text-center">
-                    Search Results {filteredQuizzes.length > 0 && (
+                    Results {filteredQuizzes.length > 0 && (
                         <span className="badge bg-primary ms-2">{filteredQuizzes.length}</span>
                     )}
                 </h5>
@@ -91,7 +71,7 @@ const SearchResults = ({ searchKey, filteredQuizzes }) => {
                         ))
                     ) : (
                         <p className="text-center text-muted my-4">
-                            No quizzes found matching &quot;{searchKey}&quot;
+                            No quizzes found for &quot;{searchKey}&quot;
                         </p>
                     )}
                 </div>
@@ -103,7 +83,7 @@ const SearchResults = ({ searchKey, filteredQuizzes }) => {
 // Pagination Controls Component
 const PaginationControls = ({ skip, limit, itemCount, onPrevious, onNext }) => (
     <Card className="border-0 shadow-sm mt-3 mb-5">
-        <CardBody className="py-2 py-md-3 d-flex justify-content-between align-items-center gap-2">
+        <CardBody className="py-2 py-md-3 d-grid gap-2 gap-md-0 d-md-flex justify-content-between align-items-center">
             <Button
                 onClick={onPrevious}
                 className={`btn-sm ${skip < 1 ? 'invisible' : ''}`}
@@ -111,11 +91,11 @@ const PaginationControls = ({ skip, limit, itemCount, onPrevious, onNext }) => (
                 disabled={skip < 1}
                 aria-label="Previous page"
             >
-                <i className="bi bi-chevron-left me-1"></i> Previous
+                <i className="bi bi-chevron-left"></i> Prev
             </Button>
 
-            <div className="text-muted">
-                Showing <span className="badge bg-secondary">{itemCount}</span> items
+            <div className="text-muted text-center">
+                Showing <span className="badge bg-secondary">{itemCount}</span>
             </div>
 
             <Button
@@ -125,7 +105,7 @@ const PaginationControls = ({ skip, limit, itemCount, onPrevious, onNext }) => (
                 disabled={itemCount < limit}
                 aria-label="Next page"
             >
-                Next <i className="bi bi-chevron-right ms-1"></i>
+                Next <i className="bi bi-chevron-right"></i>
             </Button>
         </CardBody>
     </Card>
@@ -135,7 +115,7 @@ const PaginationControls = ({ skip, limit, itemCount, onPrevious, onNext }) => (
 const QuizList = ({ quizzes, isLoading }) => {
     if (isLoading) {
         return (
-            <Card className="border-0 shadow-sm mt-4">
+            <Card className="border-0 shadow-sm my-4">
                 <CardBody className="py-5 d-flex justify-content-center align-items-center">
                     <QBLoadingSM />
                 </CardBody>
@@ -154,13 +134,13 @@ const QuizList = ({ quizzes, isLoading }) => {
     }
 
     return (
-        <Card className="border-0 shadow-sm mb-3">
-            <CardBody className="p-3">
-                {quizzes.map(quiz => (
-                    <QuizItem key={quiz._id} quiz={quiz} />
-                ))}
-            </CardBody>
-        </Card>
+        <div className="row row-cols-1 g-3">
+            {quizzes.map(quiz => (
+                <div key={quiz._id} className="col">
+                    <QuizItem quiz={quiz} />
+                </div>
+            ))}
+        </div>
     );
 };
 
@@ -214,10 +194,9 @@ const AllQuizzes = () => {
     return (
         <div className="posts mt-4">
             <HeroSection />
-            <MotivationalAlert />
 
             {/* Main Content */}
-            <Row className="mt-4 mt-lg-5">
+            <Row className="mt-3">
                 {/* Left Ad */}
                 {isAdEnabled() && (
                     <Col
@@ -233,48 +212,41 @@ const AllQuizzes = () => {
 
                 {/* Quiz List Section */}
                 <Col xs="12" md={isAdEnabled() ? "8" : "12"} className="order-1 order-md-2 mt-3 mt-md-2">
-                    <Suspense fallback={<QBLoadingSM />}>
-                        {/* Section Header */}
-                        <Card className="border-0 shadow-sm mb-3 mb-md-4">
-                            <CardBody className="text-center py-2 py-md-3">
-                                <h3 className="mb-0 fw-bolder text-primary fs-4 fs-md-3">
-                                    Entire Quiz Selection
-                                </h3>
-                            </CardBody>
-                        </Card>
+                    <div className="mx-auto" style={{ maxWidth: '1080px' }}>
+                        <Suspense fallback={<QBLoadingSM />}>
+                            {/* Search Input */}
+                            <SearchSection
+                                setSearchKey={setSearchKey}
+                                isLoading={isLoading}
+                            />
 
-                        {/* Search Input */}
-                        <SearchSection
-                            setSearchKey={setSearchKey}
-                            isLoading={isLoading}
-                        />
+                            {/* Search Results */}
+                            <SearchResults
+                                searchKey={searchKey}
+                                filteredQuizzes={filteredQuizzes}
+                            />
 
-                        {/* Search Results */}
-                        <SearchResults
-                            searchKey={searchKey}
-                            filteredQuizzes={filteredQuizzes}
-                        />
-
-                        {/* Quiz Items with Pagination */}
-                        {!searchKey && (
-                            <>
-                                <QuizList
-                                    quizzes={validLimitedQuizzes}
-                                    isLoading={loadingLimited}
-                                />
-
-                                {!loadingLimited && validLimitedQuizzes.length > 0 && (
-                                    <PaginationControls
-                                        skip={skip}
-                                        limit={limit}
-                                        itemCount={validLimitedQuizzes.length}
-                                        onPrevious={previousPage}
-                                        onNext={nextPage}
+                            {/* Quiz Items with Pagination */}
+                            {!searchKey && (
+                                <>
+                                    <QuizList
+                                        quizzes={validLimitedQuizzes}
+                                        isLoading={loadingLimited}
                                     />
-                                )}
-                            </>
-                        )}
-                    </Suspense>
+
+                                    {!loadingLimited && validLimitedQuizzes.length > 0 && (
+                                        <PaginationControls
+                                            skip={skip}
+                                            limit={limit}
+                                            itemCount={validLimitedQuizzes.length}
+                                            onPrevious={previousPage}
+                                            onNext={nextPage}
+                                        />
+                                    )}
+                                </>
+                            )}
+                        </Suspense>
+                    </div>
                 </Col>
 
                 {/* Right Ad */}

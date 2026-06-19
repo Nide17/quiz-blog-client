@@ -187,8 +187,8 @@ const LoginPromptButton = ({ toggleL }) => (
       transition: 'all 0.2s ease-in-out',
     }}
   >
-    <i className="fa fa-sign-in-alt me-2"></i>
-    <span className="d-none d-sm-inline">Login to Review</span>
+    <i className="fa fa-sign-in-alt me-2 text-primary"></i>
+    <span className="d-none d-sm-inline text-primary">Login to Review</span>
     <span className="d-inline d-sm-none">Login</span>
   </Button>
 );

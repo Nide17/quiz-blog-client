@@ -84,9 +84,10 @@ const LoginModal = () => {
         <>
             <Modal isOpen={isOpenL} toggle={toggleL} centered={true}>
                 <div
-                    className="d-flex justify-content-between align-items-center p-2"
+                    className="d-flex justify-content-between align-items-center p-2 border rounded"
                     style={{ backgroundColor: 'var(--brand)', color: '#fff' }}>
                     <img src={logocirclewhite} alt="logo"
+                        className="border rounded"
                         style={{ maxHeight: '3.2rem', color: 'var(--brand)' }} />
                     <Button className="btn-danger text-uppercase text-red ms-auto me-0"
                         style={{ padding: '0.1rem 0.3rem', fontSize: '.6rem', fontWeight: 'bold' }} onClick={toggleL}>
@@ -97,11 +98,10 @@ const LoginModal = () => {
                 {isLoading ? <QBLoadingSM /> : null}
 
                 {/* icon + title */}
-                <div className='d-flex justify-content-center align-items-center pt-3'>
-                    <img src={avatar} alt="avatar" style={{ maxHeight: '1.22rem' }} />
-                    <h5 className='text-center text-dark fw-bolder align-baseline mb-0 ms-2'>
-                        Login
-                    </h5>
+                <div className='d-flex justify-content-center align-items-center pt-4'>
+                    <span className="mb-2 p-3 d-flex align-items-center" style={{ backgroundColor: 'var(--accent)', color: 'var(--brand)', borderRadius: '50%', border: '2px solid var(--brand)' }}>
+                        <img src={avatar} alt="avatar" style={{ maxHeight: '1.5rem' }} />
+                    </span>
                 </div>
 
                 <ModalBody className='pb-0'>
@@ -134,7 +134,10 @@ const LoginModal = () => {
                                 </p>
                             </a>
                             {confirmLogin ? null :
-                                <Button style={{ marginTop: '2rem', backgroundColor: 'var(--brand)', color: 'var(--accent)' }} block>
+                                <Button
+                                    className="fw-bolder"
+                                    style={{ marginTop: '2rem', backgroundColor: 'var(--brand)', color: 'var(--accent)' }} block>
+                                    <i className="fa fa-lock me-2 text-sm"></i>
                                     Login
                                 </Button>}
                         </FormGroup>
@@ -142,6 +145,7 @@ const LoginModal = () => {
                     <div className="d-flex align-items-center justify-content-around">
                         <p className="p-2 p-xl-2 m-0">No account yet?</p>
                         <NavLink onClick={toggleR} className="fw-bolder" style={{ color: 'var(--brand)' }}>
+                            <i className="fa fa-sign-in me-1 text-xs"></i>
                             Register
                         </NavLink>
                     </div>

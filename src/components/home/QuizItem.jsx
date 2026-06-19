@@ -15,7 +15,7 @@ const QuizItem = ({ quiz, fromSearch }) => {
       {/* Title */}
       <CardTitle
         tag="h5"
-        className={`mb-2 text-uppercase text-center fw-bold ${fromSearch ? 'text-white' : 'text-primary'}`}
+        className={`mb-2 text-uppercase text-center fw-bolder ${fromSearch ? 'text-white' : 'text-primary'}`}
       >
         <Link
           to={`/view-quiz/${slug}`}
@@ -27,23 +27,22 @@ const QuizItem = ({ quiz, fromSearch }) => {
       </CardTitle>
 
       {/* Category */}
-      <div className="d-flex justify-content-center mb-2">
-        <small className="text-muted">
+      <div className="d-flex justify-content-center fw-bold text-uppercase mb-2">
+        <small className="text-muted text-xs">
           - {category?.title || 'Uncategorized'}
         </small>
       </div>
 
       {/* Description */}
-      <CardText
-        className="text-secondary details text-center flex-grow-1"
-        style={{ minHeight: '3rem' }}
-      >
-        {description || 'No description available.'}
+      <CardText className="text-secondary text-center flex-grow-1" style={{ overflow: 'hidden' }}>
+        <span className="details capitalize-first">
+          {description || 'No description available.'}
+        </span>
       </CardText>
 
       {/* Date */}
       <div className="d-flex justify-content-center mt-auto">
-        <small className="text-muted">
+        <small className="text-muted text-xs fw-bold">
           {formattedDate !== 'Invalid date' ? formattedDate : ''}
         </small>
       </div>

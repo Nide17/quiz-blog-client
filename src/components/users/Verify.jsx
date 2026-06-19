@@ -187,8 +187,8 @@ export default function Verify() {
                         {resendAttempts >= MAX_RESEND_ATTEMPTS
                             ? "Start Over"
                             : canResend
-                                ? `Resend Code (${MAX_RESEND_ATTEMPTS - resendAttempts} left)`
-                                : `Resend available in ${resendTimer}s`}
+                                ? `Resend Code`
+                                : `Resend in ${resendTimer}s`}
                     </Button>
                 </div>
             </Row>

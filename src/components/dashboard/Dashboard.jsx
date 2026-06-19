@@ -46,7 +46,7 @@ const Dashboard = () => {
                         // If the user is Admin or Creator
                         user.role !== 'Visitor' ?
                             <>
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '1' })}
                                         onClick={() => { toggle('1'); }}>
@@ -54,14 +54,14 @@ const Dashboard = () => {
                                     </NavLink>
                                 </NavItem>
 
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '2' })}
                                         onClick={() => { toggle('2'); }}>
                                         <u>Quizzes</u>
                                     </NavLink>
                                 </NavItem>
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '3' })}
                                         onClick={() => { toggle('3'); }}>
@@ -70,7 +70,7 @@ const Dashboard = () => {
                                 </NavItem>
                             </> : null}
 
-                    <NavItem>
+                    <NavItem className="me-0 me-sm-2">
                         <NavLink
                             className={classnames({ active: activeTab === '4' })}
                             onClick={() => { toggle('4'); }}>
@@ -78,7 +78,7 @@ const Dashboard = () => {
                         </NavLink>
                     </NavItem>
 
-                    <NavItem>
+                    <NavItem className="me-0 me-sm-2">
                         <NavLink
                             className={classnames({ active: activeTab === '5' })}
                             onClick={() => { toggle('5'); }}>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                     { // When not a visitor
                         user.role !== 'Visitor' ?
                             <>
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '6' })}
                                         onClick={() => { toggle('6'); }}>
@@ -97,7 +97,7 @@ const Dashboard = () => {
                                     </NavLink>
                                 </NavItem>
 
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '7' })}
                                         onClick={() => { toggle('7'); }}>
@@ -109,7 +109,7 @@ const Dashboard = () => {
                         // Admin only
                         user.role?.includes('Admin') ?
                             <>
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '8' })}
                                         onClick={() => { toggle('8'); }}>
@@ -117,7 +117,7 @@ const Dashboard = () => {
                                     </NavLink>
                                 </NavItem>
 
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '9' })}
                                         onClick={() => { toggle('9'); }}>
@@ -125,7 +125,7 @@ const Dashboard = () => {
                                     </NavLink>
                                 </NavItem>
 
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '10' })}
                                         onClick={() => { toggle('10'); }}>
@@ -133,7 +133,7 @@ const Dashboard = () => {
                                     </NavLink>
                                 </NavItem>
 
-                                <NavItem>
+                                <NavItem className="me-0 me-sm-2">
                                     <NavLink
                                         className={classnames({ active: activeTab === '11' })}
                                         onClick={() => { toggle('11'); }}>

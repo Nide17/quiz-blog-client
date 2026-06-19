@@ -50,32 +50,11 @@ export default function Unsubscribe() {
                 className="mt-5 d-flex flex-column justify-content-center align-items-center"
                 style={{ minHeight: "70vh" }}
             >
+                <Jumbotron
+                    h1="Unsubscribe"
+                    p="Manage your email subscription preferences."
+                />
 
-                {/* JBTRON */}
-                <Row className="jbtron rounded px-4 py-4 py-sm-5 text-center border border-danger my-4 w-100">
-                    <h1 className="fw-bolder text-white display-6">Unsubscribe</h1>
-
-                    <p className="text-white mt-2 mb-1">
-                        Manage your email subscription preferences.
-                    </p>
-
-                    {email && (
-                        <p className="fw-bold text-white mb-1">
-                            Email: {email}
-                        </p>
-                    )}
-
-                    <hr
-                        className="my-3"
-                        style={{
-                            height: "2px",
-                            borderWidth: 0,
-                            backgroundColor: "var(--brand)",
-                        }}
-                    />
-                </Row>
-
-                {/* Body Content */}
                 {invalidLink ? (
                     <h5 className="text-danger text-center mt-4">
                         Invalid unsubscribe link.

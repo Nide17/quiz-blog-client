@@ -12,8 +12,6 @@ const LandingSection = () => {
   const { toggleR } = useContext(logRegContext);
   const title = 'Knowledge matters, and so does the joy of quizzing!';
 
-  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-
   const handleGetStarted = () => {
     if (!isAuthenticated) {
       toggleR();
@@ -32,11 +30,9 @@ const LandingSection = () => {
   return (
     <section className="intro-landing w-100 d-flex flex-column flex-lg-row justify-content-around align-items-center mx-auto py-5" aria-label="Landing">
 
-      <Col sm={12} lg={7} className="d-flex flex-column text-start px-3 px-lg-5">
+      <Col sm={12} lg={7} className="d-flex flex-column text-start p-2 p-md-5">
         <h1 className="text-primary fw-bolder mb-3 landing-title">
-          {title.split(' ').map((word) => (
-            <span key={word} className="d-inline-block me-1">{capitalize(word)}&nbsp;</span>
-          ))}
+          <span className="d-inline-block me-1">{title}</span>
         </h1>
 
         <p className="lead fs-5 pt-3">
@@ -64,7 +60,7 @@ const LandingSection = () => {
         </div>
       </Col>
 
-      <Col sm={12} lg={5} className="py-3 p-md-5">
+      <Col sm={12} lg={5} className="p-2 p-md-5">
         <Adverts />
       </Col>
 

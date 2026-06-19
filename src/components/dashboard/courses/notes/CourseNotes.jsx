@@ -183,7 +183,10 @@ const CourseNotes = ({ chapter }) => {
                         color: 'var(--accent)',
                         border: '2px solid var(--accent)',
                         backgroundColor: 'var(--brand)',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
                       Download

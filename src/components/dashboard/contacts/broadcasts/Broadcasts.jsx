@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Row, Alert } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBroadcasts } from '@/redux/slices/broadcastsSlice';
-
+import Jumbotron from "@/utils/Jumbotron";
 import BroadcastsCard from './BroadcastCard';
 import QBLoadingSM from '@/utils/rLoading/QBLoadingSM';
 
@@ -19,7 +19,6 @@ const Broadcasts = () => {
     }, [dispatch]);
 
 
-    // --- ACCESS CONTROL ---
     if (!curUserRole.includes('Admin')) {
         return <Alert color="danger">Access Denied!</Alert>;
     }
@@ -27,20 +26,10 @@ const Broadcasts = () => {
 
     return (
         <div className="broadcasts-section px-3 px-sm-4 py-3 py-sm-5 d-flex flex-column align-items-center">
-            <div className="jbtron rounded w-lg-75 px-3 px-sm-4 py-3 py-sm-5 p-2 m-2 
-                            text-center border border-info">
-
-                <h1
-                    className="display-4 fw-bolder text-center my-3 mb-lg-4"
-                    style={{ color: 'var(--accent)' }}
-                >
-                    Broadcasts
-                </h1>
-
-                <p className="lead mb-1 mb-lg-4 text-white">
-                    These are all broadcasts sent to users across the Quiz-Blog platform.
-                </p>
-            </div>
+            <Jumbotron
+                h1="Broadcasts"
+                p="These are all broadcasts sent to users across the Quiz-Blog platform."
+            />
 
             {isLoading ? (
                 <QBLoadingSM title="broadcasts" />
