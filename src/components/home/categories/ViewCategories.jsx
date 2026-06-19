@@ -46,7 +46,7 @@ const ViewCategories = () => {
                                     <ListGroupItem key={quiz._id} className="d-flex justify-content-between align-items-center px-2 py-1">
                                         <Link
                                             to={`/view-quiz/${quiz.slug}`}
-                                            className="m-0 text-capitalize mob-quiz quiz-link text-truncate"
+                                            className="m-0 mob-quiz quiz-link text-truncate"
                                             title={quiz.title}
                                         >
                                             {quiz.title}

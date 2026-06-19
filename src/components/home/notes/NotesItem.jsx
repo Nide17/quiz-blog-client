@@ -2,7 +2,7 @@ import { Card, CardTitle, CardText } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { formatDateTime } from '@/utils/dateFormat';
 
-const NotesPapersItem = ({ note, fromSearch }) => {
+const NotesItem = ({ note, fromSearch }) => {
 
   const { slug, title, description, courseCategory, course, chapter, createdAt, } = note;
   const formattedDate = createdAt ? formatDateTime(createdAt) : '';
@@ -24,26 +24,25 @@ const NotesPapersItem = ({ note, fromSearch }) => {
         <Link to={`/view-note-paper/${slug}`}>{title && title}</Link>
       </CardTitle>
 
-      <CardText className="mt-1 details text-secondary text-capitalize text-center">
-        {description && description}
+      <div className="d-flex justify-content-center fw-bold text-uppercase mb-1">
+        <small className="text-muted text-xs mt-2">
+          {course && course.title}&nbsp;({chapter && chapter.title})
+        </small>
+      </div>
+
+      <CardText className="mt-1 details text-secondary d-inline-block text-center">
+        <span className='capitalize-first'>
+          {description && description}
+        </span>
       </CardText>
 
-      <div className="small-text d-flex flex-wrap gap-2">
-        <p className="me-2 me-md-5 my-1 text-dark w-100 text-center">
-          - {course && course.title}
-          <small>&nbsp;({chapter && chapter.title})</small>
-        </p>
-        <div className="w-100 d-flex justify-content-around">
-          <small className="me-2 me-md-5 my-1 text-dark">
-            {courseCategory && courseCategory.title}
-          </small>
-          <small className="me-2 me-md-5 my-1 text-dark">
-            {formattedDate === 'Invalid date' ? '' : formattedDate}
-          </small>
-        </div>
+      <div className="w-100 d-flex justify-content-around">
+        <small className="me-2 me-md-5 my-1 text-dark">
+          {formattedDate === 'Invalid date' ? '' : formattedDate}
+        </small>
       </div>
     </Card>
   );
 };
 
-export default NotesPapersItem;
+export default NotesItem;

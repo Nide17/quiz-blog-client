@@ -69,7 +69,7 @@ const AddModal = ({
       <Button
         color="warning"
         onClick={toggle}
-        className="text-success p-1 mx-1 mx-md-3 d-inline-flex align-items-center"
+        className="text-success p-1 mx-1 px-md-2 mx-md-3 d-inline-flex align-items-center border border-success"
         aria-label={triggerText || title}
       >
         <img src={plus} alt="add" width="16" height="16" />

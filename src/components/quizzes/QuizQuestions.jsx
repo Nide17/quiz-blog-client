@@ -235,12 +235,11 @@ const QuizQuestions = () => {
     }
 
     return (
-        <div className="mx-auto flex-column justify-content-center rounded border border-primary my-5 py-4">
+        <div className="flex-column justify-content-center rounded border border-2 mx-sm-5 my-5 py-4">
             <QuestionsView
                 qnsLength={qnsLength}
                 curQnIndex={curQnIndex}
                 currentQn={currentQn}
-                curQnOpts={currentQn.answerOptions}
                 checkedState={answers}
                 selected={answers}
                 handleOnChange={(e, i) => handleOnChange(i)}

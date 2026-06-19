@@ -50,7 +50,7 @@ const Footer = () => {
                                 <h4 className='mt-4 mt-lg-0'>About</h4>
                                 <ul className="list-unstyled ms-2">
                                     <li><a href="/about">Our Team</a></li>
-                                    <li><a href="/contact">Reach Us</a></li>
+                                    <li><a href="/contact">Reach Out</a></li>
                                     <li><a href="/faqs">FAQS</a></li>
                                 </ul>
                             </div>

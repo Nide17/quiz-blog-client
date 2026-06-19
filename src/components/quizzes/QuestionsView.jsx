@@ -7,19 +7,21 @@ const QuestionsView = ({
     qnsLength,
     curQnIndex,
     currentQn,
-    curQnOpts,
     checkedState,
     selected,
     handleOnChange,
     goToNextQuestion
 }) => {
+
+    const { questionText, duration, question_image, answerOptions } = currentQn || {};
+
     const imgRef = useRef(null);
     const [imgLoaded, setImgLoaded] = useState(true);
     const [imgError, setImgError] = useState(false);
 
     // Reset image state when question changes
     useEffect(() => {
-        if (!currentQn?.question_image) {
+        if (!question_image) {
             setImgLoaded(true);
             setImgError(false);
             return;
@@ -31,7 +33,7 @@ const QuestionsView = ({
 
         // Preload image
         const img = new Image();
-        img.src = currentQn.question_image;
+        img.src = question_image;
 
         img.onload = () => {
             setImgLoaded(true);
@@ -47,7 +49,7 @@ const QuestionsView = ({
             img.onload = null;
             img.onerror = null;
         };
-    }, [currentQn?.question_image]);
+    }, [question_image]);
 
     const handleImgLoad = () => {
         setImgLoaded(true);
@@ -77,10 +79,10 @@ const QuestionsView = ({
     }
 
     return (
-        <div className="question-view p-2" style={{ backgroundColor: "#F5F5F5" }}>
-            {/* Countdown — only start when image is loaded successfully */}
+        <div className="question-view p-2"
+            style={{ backgroundColor: "#F5F5F5" }}>
             <CountDown
-                timeInSecs={currentQn.duration}
+                timeInSecs={duration}
                 start={shouldStartCountdown}
                 goToNextQuestion={goToNextQuestion}
                 curQnIndex={curQnIndex}
@@ -96,14 +98,14 @@ const QuestionsView = ({
                             /{qnsLength}
                         </h4>
                         <h5 className="q-txt mt-4 fw-bolder">
-                            {currentQn.questionText}
+                            {questionText}
                         </h5>
                     </div>
                 </Col>
             </Row>
 
             {/* Image Section */}
-            {currentQn.question_image && (
+            {question_image && (
                 <Row>
                     <Col className="d-flex justify-content-center align-items-center position-relative">
                         {/* Loading Indicator */}
@@ -125,7 +127,7 @@ const QuestionsView = ({
                         {!imgError && (
                             <img
                                 ref={imgRef}
-                                src={currentQn.question_image}
+                                src={question_image}
                                 onLoad={handleImgLoad}
                                 onError={handleImgError}
                                 alt={`Question ${questionNumber} illustration`}
@@ -146,16 +148,17 @@ const QuestionsView = ({
             )}
 
             {/* Answer Options */}
-            {curQnOpts?.length > 0 ? (
+            {answerOptions?.length > 0 ? (
                 <Row>
                     <Col>
                         <div className="answer d-flex flex-column mx-auto mt-2 w-lg-50">
-                            {curQnOpts.map((answerOption, index) => {
+                            {answerOptions.map((answerOption, index) => {
                                 const isSelected = selected[index];
                                 const isDisabled = !imgLoaded || imgError;
 
                                 return (
-                                    <div key={`${answerOption.answerText}-${index}`} className="my-3 my-lg-4">
+                                    <div key={`${answerOption.answerText}-${index}`}
+                                        className="my-2 my-lg-3">
                                         <FormGroup check>
                                             <Label
                                                 check
@@ -163,7 +166,7 @@ const QuestionsView = ({
                                                 style={{
                                                     width: "96%",
                                                     margin: "auto",
-                                                    border: "2px solid #000",
+                                                    border: "2px solid var(--brand)",
                                                     borderRadius: "10px",
                                                     backgroundColor:
                                                         isSelected && answerOption.isCorrect

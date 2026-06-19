@@ -1,14 +1,18 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Row, Col, Button, Form, Input } from "reactstrap";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ResponsiveAd from "@/components/adsenses/ResponsiveAd";
 import SquareAd from "@/components/adsenses/SquareAd";
 import isAdEnabled from "@/utils/isAdEnabled";
+import Jumbotron from "@/utils/Jumbotron";
 import { sendNewPassword } from "@/redux/slices/usersSlice";
 import { notify } from "@/utils/notifyToast";
 
 export default function ResetPassword() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { isLoading, isAuthenticated } = useSelector((state) => state.users);
 
     const [form, setForm] = useState({
         password: "",
@@ -30,7 +34,7 @@ export default function ResetPassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (isProcessing) return;
+        if (isProcessing || isLoading) return;
 
         const { password, password1 } = form;
 
@@ -58,7 +62,11 @@ export default function ResetPassword() {
                     token,
                     password,
                 })
-            );
+            )
+                .unwrap()
+                .then(() => {
+                    navigate("/dashboard", { replace: true });
+                });
         } catch (err) {
             console.error(err);
             notify("Error resetting password. Try again.", "error");
@@ -67,29 +75,25 @@ export default function ResetPassword() {
         }
     };
 
+    // Redirect if already authenticated
+    useEffect(() => {
+        if (isAuthenticated) navigate("/dashboard", { replace: true });
+    }, [isAuthenticated, navigate]);
+
     return (
         <div className="forgot-password mt-4">
             <Row
-                className="mt-5 d-block text-center"
-                style={{ minHeight: "68vh" }}
+                className="mt-5 d-flex flex-column justify-content-center align-items-center"
+                style={{ minHeight: "70vh" }}
             >
-                <h2 className="fw-bolder my-3" style={{ color: "var(--brand)" }}>
-                    Update your password
-                </h2>
-
-                <p>Please enter matching passwords to reset your account.</p>
-
-                {/* Square Ad */}
-                {isAdEnabled() && (
-                    <Row className="w-100 mb-3">
-                        <Col sm="12">
-                            <SquareAd />
-                        </Col>
-                    </Row>
-                )}
+                <Jumbotron
+                    h1="Update your password"
+                    p="Please enter matching passwords to reset your account."
+                    small="Please a strong password."
+                />
 
                 <Form className="my-4" onSubmit={handleSubmit}>
-                    <div className="input-group mx-auto my-4 w-50">
+                    <div className="input-group mx-auto my-4 w-75">
                         <Input
                             type="password"
                             name="password"
@@ -101,7 +105,7 @@ export default function ResetPassword() {
                         />
                     </div>
 
-                    <div className="input-group mx-auto my-4 w-50">
+                    <div className="input-group mx-auto my-4 w-75">
                         <Input
                             type="password"
                             name="password1"
@@ -117,10 +121,10 @@ export default function ResetPassword() {
                         color="success"
                         size="md"
                         className="mt-4 d-block mx-auto text-white"
-                        disabled={isProcessing}
-                        style={{ width: "16%" }}
+                        disabled={isProcessing || isLoading}
+                        style={{ width: "160px" }}
                     >
-                        {isProcessing ? "Processing..." : "Reset"}
+                        {isProcessing || isLoading ? "Processing..." : "Update"}
                     </Button>
                 </Form>
 

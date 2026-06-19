@@ -166,7 +166,7 @@ const GetReady = () => {
                             😕 {texts.noQuestions}
                         </CardTitle>
                         <CardText className="text-secondary mb-4">
-                            This quiz is still being prepared. Don&apos;t worry — plenty of other quizzes
+                            This quiz is still being prepared. Don&apos;t worry, plenty of other quizzes
                             are ready for you to try!
                         </CardText>
                         <Link to="/all-quizzes">
@@ -210,7 +210,9 @@ const GetReady = () => {
                         {/* Description */}
                         {oneQuiz.description && (
                             <CardText className="mb-4 opacity-90">
-                                {oneQuiz.description}
+                                <span className="capitalize-first">
+                                    {oneQuiz.description}
+                                </span>
                             </CardText>
                         )}
 
@@ -218,13 +220,13 @@ const GetReady = () => {
                         {quizStats && (
                             <Row className="mb-4 g-2">
                                 <Col xs="6" sm="6">
-                                    <div className="bg-white bg-opacity-25 rounded p-3">
+                                    <div className="bg-white bg-opacity-25 rounded p-1">
                                         <div className="fw-bold">{quizStats.questionCount}</div>
                                         <small>{texts.questions}</small>
                                     </div>
                                 </Col>
                                 <Col xs="6" sm="6">
-                                    <div className="bg-white bg-opacity-25 rounded p-3">
+                                    <div className="bg-white bg-opacity-25 rounded p-1">
                                         <div className="fw-bold">~{quizStats.estimatedMinutes} min</div>
                                         <small>{texts.duration}</small>
                                     </div>
@@ -263,7 +265,7 @@ const GetReady = () => {
                             >
                                 <Button
                                     size="lg"
-                                    className="w-100 py-3 fw-bold"
+                                    className="w-100 py-2 fw-bold"
                                     style={{
                                         backgroundColor: '#ffc107',
                                         color: '#157a6e',
@@ -305,7 +307,7 @@ const GetReady = () => {
                                 <div className="d-flex justify-content-center gap-2">
                                     <Button
                                         color="light"
-                                        className="rounded-circle"
+                                        className="rounded-circle d-flex align-items-center justify-content-center"
                                         style={{ width: '40px', height: '40px' }}
                                         tag="a"
                                         href={shareUrls.whatsapp}
@@ -317,7 +319,7 @@ const GetReady = () => {
                                     </Button>
                                     <Button
                                         color="light"
-                                        className="rounded-circle"
+                                        className="rounded-circle d-flex align-items-center justify-content-center"
                                         style={{ width: '40px', height: '40px' }}
                                         tag="a"
                                         href={shareUrls.twitter}
@@ -329,7 +331,7 @@ const GetReady = () => {
                                     </Button>
                                     <Button
                                         color="light"
-                                        className="rounded-circle"
+                                        className="rounded-circle d-flex align-items-center justify-content-center"
                                         style={{ width: '40px', height: '40px' }}
                                         tag="a"
                                         href={shareUrls.facebook}

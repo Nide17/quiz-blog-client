@@ -14,7 +14,7 @@ const ResponsiveHorizontal = lazy(() =>
   import('@/components/adsenses/ResponsiveHorizontal')
 );
 const GridMultiplex = lazy(() => import('@/components/adsenses/GridMultiplex'));
-const NotesPapersItem = lazy(() => import('./NotesPapersItem'));
+const NotesItem = lazy(() => import('./NotesItem'));
 
 const NotesPapers = () => {
   // Redux
@@ -78,7 +78,7 @@ const NotesPapers = () => {
                 <section className="notes-grid" aria-live="polite">
                   {limitedLandingDisplayNotes.map((note) => (
                     <Suspense key={note._id} fallback={<ItemPlaceholder />}>
-                      <NotesPapersItem note={note} />
+                      <NotesItem note={note} />
                     </Suspense>
                   ))}
                 </section>

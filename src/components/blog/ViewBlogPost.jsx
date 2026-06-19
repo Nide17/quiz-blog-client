@@ -60,7 +60,7 @@ const useBlogPostView = (blogPostId, userId) => {
   const [viewError, setViewError] = useState(null);
 
   useEffect(() => {
-    // if (!blogPostId || hasSentView.current) return;
+    if (!blogPostId || hasSentView.current) return;
 
     const trackView = async () => {
       try {

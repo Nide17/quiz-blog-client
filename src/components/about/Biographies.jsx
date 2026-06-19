@@ -110,7 +110,7 @@ const Biographies = () => {
   }, []);
 
   return (
-    <div className="p-3 p-lg-5">
+    <div className="p-3 p-lg-5 mx-auto" style={{ maxWidth: '1000px' }}>
       <h2 className="fw-bolder text-center my-5" style={{ color: 'var(--brand)' }}>
           Meet the team
       </h2>
@@ -127,11 +127,10 @@ const Biographies = () => {
           </div>
 
           <div className="memberText col-12 col-sm-8 px-0 px-sm-3">
-            <h4 className="py-3 fw-bolder w-100" style={{ color: 'var(--brand)' }}>{p.name}</h4>
-            <h6 className="fw-bolder">{p.title}</h6>
+            <h4 className="py-1 fw-bolder w-100" style={{ color: 'var(--brand)' }}>{p.name}</h4>
             <div className="mt-lg-2">
               <p className="text-justify">
-                {p.title} — a dedicated team member helping Quiz-Blog deliver quality educational content.
+                {p.title}
               </p>
             </div>
 

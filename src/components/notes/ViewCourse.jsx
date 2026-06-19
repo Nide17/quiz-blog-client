@@ -115,7 +115,7 @@ const ViewCourse = () => {
 
                 return (
 
-                    <Card key={index} className="mb-3 text-capitalize chapter-card" body style={{ minHeight: 'fit-content', border: '2px solid var(--brand)' }}>
+                    <Card key={index} className="mb-3 chapter-card" body style={{ minHeight: 'fit-content', border: '2px solid var(--brand)' }}>
 
                         <CardTitle tag="h5" className="fw-bolder mb-0 d-flex">
                             Chapter - {index + 1}.&nbsp;{chapter?.title}

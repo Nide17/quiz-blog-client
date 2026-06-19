@@ -46,8 +46,9 @@ const DeleteModal = ({ delID, delTitle, deleteFn, deleteFnName }) => {
     <>
       <Button
         color="warning"
+        outline
         onClick={toggle}
-        className="text-success p-1 mx-1 mx-md-3 d-inline-flex align-items-center"
+        className="text-success p-1 mx-1 px-2 mx-md-3 d-inline-flex align-items-center"
         aria-label={delTitle}
       >
         <img src={trash} alt="trash" width="16" height="16" />

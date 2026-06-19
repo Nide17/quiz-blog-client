@@ -217,8 +217,6 @@ const usersSlice = createSlice({
 
       // CASE 2: Backend sent a *refreshed* token
       if (backendToken !== storedToken) {
-        console.log("Token was refreshed by backend — updating localStorage");
-
         localStorage.setItem("token", backendToken);
         state.token = backendToken;
       }
@@ -323,7 +321,6 @@ const usersSlice = createSlice({
     });
     builder.addCase(sendNewPassword.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.user = action.payload;
       notify('Password reset successful! Please login with your new password.');
     });
     builder.addCase(deleteUser.fulfilled, (state, action) => {

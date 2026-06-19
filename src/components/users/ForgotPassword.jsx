@@ -1,15 +1,18 @@
-import { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Button, Form, Input } from "reactstrap";
-
+import { useNavigate } from 'react-router-dom';
 import SquareAd from "@/components/adsenses/SquareAd";
 import ResponsiveAd from "@/components/adsenses/ResponsiveAd";
 import isAdEnabled from "@/utils/isAdEnabled";
+import Jumbotron from "@/utils/Jumbotron";
 import { sendResetLink } from "@/redux/slices/usersSlice";
 import { notify } from "@/utils/notifyToast";
 
 export default function ForgotPassword() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { isLoading, isAuthenticated } = useSelector((state) => state.users);
 
     const [email, setEmail] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
@@ -20,7 +23,7 @@ export default function ForgotPassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (isProcessing) return;
+        if (isProcessing || isLoading) return;
 
         const emailTrimmed = email.trim();
         const emailRegex =
@@ -48,13 +51,17 @@ export default function ForgotPassword() {
         }
     };
 
+    // Redirect if already authenticated
+    useEffect(() => {
+        if (isAuthenticated) navigate("/dashboard", { replace: true });
+    }, [isAuthenticated, navigate]);
+
     return (
         <div className="forgot-password mt-4">
             <Row
                 className="mt-5 d-flex flex-column justify-content-center align-items-center"
                 style={{ minHeight: "70vh" }}
             >
-                {/* --- Top Ad --- */}
                 {isAdEnabled() && (
                     <Row className="w-100 mb-4">
                         <Col sm="12">
@@ -63,31 +70,12 @@ export default function ForgotPassword() {
                     </Row>
                 )}
 
-                {/* --- Jumbotron --- */}
-                <div className="jbtron rounded px-4 py-4 py-sm-5 text-center border border-info my-4 w-100">
-                    <h1 className="fw-bolder text-white display-6">
-                        Forgot Your Password?
-                    </h1>
+                <Jumbotron
+                    h1="Forgot Your Password?"
+                    p="Enter the correct and operational email linked to your account and we’ll send you a reset link."
+                    small="It only takes seconds."
+                />
 
-                    <p className="text-white mt-2 mb-1">
-                        Enter the correct and operational email linked to your account and we’ll send you a reset link.
-                    </p>
-
-                    <p className="text-white small mb-0">
-                        It only takes a time.
-                    </p>
-
-                    <hr
-                        className="my-3"
-                        style={{
-                            height: "2px",
-                            borderWidth: 0,
-                            backgroundColor: "var(--brand)",
-                        }}
-                    />
-                </div>
-
-                {/* --- Form --- */}
                 <Form className="my-2 w-100" onSubmit={handleSubmit}>
                     <div className="input-group mx-auto text-center" style={{ maxWidth: "380px" }}>
                         <Input
@@ -106,13 +94,12 @@ export default function ForgotPassword() {
                         size="md"
                         className="mt-4 d-block mx-auto text-white"
                         style={{ width: "160px" }}
-                        disabled={isProcessing}
+                        disabled={isProcessing || isLoading}
                     >
-                        {isProcessing ? "Sending..." : "Send Link"}
+                        {isProcessing || isLoading ? "Sending..." : "Send Link"}
                     </Button>
                 </Form>
 
-                {/* --- Bottom Ad --- */}
                 {isAdEnabled() && (
                     <Row className="w-100 mt-4">
                         <Col sm="12">
