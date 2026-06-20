@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
    URL CONFIG
 ------------------------------------------------------------------- */
 const URLS = {
-    production: "https://myqb-245fdbd30c9b.herokuapp.com",
+    production: "https://new2025qb-27db9eb372f9.herokuapp.com",
     test: "https://qb-backend-one.vercel.app",
     local: "http://localhost:5000"
 };
